@@ -42,9 +42,13 @@ html {
   padding: 0 20px;
 }
 
-.nuxt-link-active {
+.nuxt-link-exact-active {
   color: #fff;
   font-weight: bold;
+}
+
+.nuxt-link-exact-active.no-active {
+  font-weight: normal;
 }
 </style>
 
