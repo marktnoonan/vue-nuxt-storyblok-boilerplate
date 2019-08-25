@@ -1,8 +1,8 @@
 {
-  "name": "vue-nuxt-storyblok-boilerplate",
+  "name": "Autism Activities",
   "version": "1.0.0",
-  "description": "Nuxt.js Storyblok Boilerplate",
-  "author": "Alexander Feiglstorfer <delooks@gmail.com>",
+  "description": "Based onoNuxt.js Storyblok Boilerplate",
+  "author": "Mark Noonan <markthomasnoonan@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
