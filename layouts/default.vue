@@ -41,5 +41,10 @@ html {
   margin: 20px auto;
   padding: 0 20px;
 }
+
+.nuxt-link-active {
+  color: #fff;
+  font-weight: bold;
+}
 </style>
 
