@@ -1,0 +1,93 @@
+<template>
+  <div>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <nuxt-link to="/"><span class="font-semibold text-xl tracking-tight">Autism Activities</span></nuxt-link>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <nuxt-link to="/about" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            About
+          </nuxt-link>
+          <nuxt-link to="/events" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            Events
+          </nuxt-link>
+          <nuxt-link to="/places" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            Places
+          </nuxt-link>
+          <nuxt-link to="/contact" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            Contact
+          </nuxt-link>
+
+        </div>
+        <div>
+          <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+        </div>
+      </div>
+    </nav>
+    <component v-if="story.content.component" :key="story.content._uid" :blok="story.content" :is="story.content.component | dashify"></component>
+  </div>
+</template>
+
+<script>
+const loadData = function({api, cacheVersion, errorCallback, version, path}) {
+  return api.get(`cdn/stories/${path}`, {
+    version: version,
+    cv: cacheVersion
+  }).then((res) => {
+    return res.data
+  }).catch((res) => {
+    if (!res.response) {
+      console.error(res)
+      errorCallback({ statusCode: 404, message: 'Failed to receive content form api' })
+    } else {
+      console.error(res.response.data)
+      errorCallback({ statusCode: res.response.status, message: res.response.data })
+    }
+  })
+}
+
+export default {
+  data () {
+    return { story: { content: {} } }
+  },
+  mounted () {
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else if (!event.slugChanged) {
+        window.location.reload()
+      }
+    })
+  },
+  asyncData (context) {
+    // Check if we are in the editing mode
+    let editMode = false
+
+    if (context.query._storyblok || context.isDev || (typeof window !== 'undefined' && window.localStorage.getItem('_storyblok_draft_mode'))) {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('_storyblok_draft_mode', '1')
+        if (window.location == window.parent.location) {
+          window.localStorage.removeItem('_storyblok_draft_mode')
+        }
+      }
+
+      editMode = true
+    }
+
+    let version = editMode ? 'draft' : 'published'
+    let path = context.route.path == '/' ? 'home' : context.route.path
+
+    // Load the JSON from the API
+    return loadData({
+      version: version,
+      api: context.app.$storyapi,
+      cacheVersion: context.store.state.cacheVersion,
+      errorCallback: context.error,
+      path: path
+    })
+  }
+}
+</script>
