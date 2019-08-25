@@ -37,6 +37,9 @@ html {
 
 .column {
   flex: 1;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 20px;
 }
 </style>
 

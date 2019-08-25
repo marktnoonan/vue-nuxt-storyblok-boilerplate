@@ -8,7 +8,7 @@
       integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
       crossorigin=""></script>
       <div id="mapid"></div>
-    <p class="text text-base">{{ blok.text }}</p>
+    <p class="text text-base leading-tight">{{ blok.text }}</p>
     
   </div>
 </template>
