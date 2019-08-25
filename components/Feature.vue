@@ -1,7 +1,7 @@
 <template>
   <div v-editable="blok" class="column feature">
     <div class="title">{{ blok.name }}</div>
-    <p class="text text-base leading-tight">{{ blok.text }}</p>
+    <p class="text text-base leading-tight my-6">{{ blok.text }}</p>
   </div>
 </template>
 

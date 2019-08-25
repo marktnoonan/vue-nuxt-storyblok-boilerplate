@@ -14,7 +14,9 @@
     "@nuxtjs/tailwindcss": "^1.1.2",
     "axios": "^0.19.0",
     "cross-env": "^5.2.0",
+    "leaflet": "^1.5.1",
     "nuxt": "^2.0.0",
+    "nuxt-leaflet": "0.0.19",
     "storyblok-nuxt": "1.0.0"
   },
   "devDependencies": {

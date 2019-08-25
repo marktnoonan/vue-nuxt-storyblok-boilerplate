@@ -12,3 +12,4 @@ Vue.component('blok-grid', Grid)
 Vue.component('blok-feature', Feature)
 Vue.component('blok-contact-form', ContactForm)
 Vue.component('blok-map', aaMap)
+

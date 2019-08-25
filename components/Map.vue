@@ -4,30 +4,28 @@
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin=""/>
     <div class="title">{{ blok.name }}</div>
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-      integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-      crossorigin=""></script>
-      <div id="mapid"></div>
-    <p class="text text-base leading-tight">{{ blok.text }}</p>
+    <div id="map-wrap" style="height: 400px">
+      <no-ssr>
+        <l-map :zoom=13 :center="[53.3498, -6.2603]">
+          <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+          <l-marker :lat-lng="[53.3498, -6.2603]"></l-marker>
+        </l-map>
+      </no-ssr>
+      </div>
+    <p class="text text-base leading-tight my-6">{{ blok.text }}</p>
     
   </div>
 </template>
 
 <style lang="css" scoped>
-#mapid { height: 180px; }
 </style>
 
 <script>
+
 export default {
   props: ['blok'],
   mounted() {
-    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox.streets',
-      accessToken: 'pk.eyJ1IjoibWFya3Rob21hc25vb25hbiIsImEiOiJjanpyajJ0eGowbG03M2NwOTdmbmZvdDNpIn0.CoB6n49DtlJ59maz3ep8SA'
-    }).addTo(mymap);
+
   }
 }
 </script>
