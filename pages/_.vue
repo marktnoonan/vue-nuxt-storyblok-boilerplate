@@ -26,6 +26,13 @@
       </div>
     </nav>
     <component v-if="story.content.component" :key="story.content._uid" :blok="story.content" :is="story.content.component | dashify"></component>
+    <form name="contact" netlify hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="radio" class="form-radio" name="accountType" value="suggest-event">
+      <input type="radio" class="form-radio" name="accountType" value="general-comment">
+      <textarea name="message"></textarea>
+    </form>
   </div>
 </template>
 
