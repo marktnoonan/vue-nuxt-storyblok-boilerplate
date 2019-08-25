@@ -5,12 +5,12 @@
       crossorigin=""/>
     <div class="title">{{ blok.name }}</div>
     <div id="map-wrap" style="height: 400px">
-      <no-ssr>
+      <client-only>
         <l-map :zoom=13 :center="[53.3498, -6.2603]">
-          <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+          <l-tile-layer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
           <l-marker :lat-lng="[53.3498, -6.2603]"></l-marker>
         </l-map>
-      </no-ssr>
+      </client-only>
       </div>
     <p class="text text-base leading-tight my-6">{{ blok.text }}</p>
     
