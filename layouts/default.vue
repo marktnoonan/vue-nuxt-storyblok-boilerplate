@@ -24,9 +24,7 @@ html {
 .teaser,
 .column {
   font-size: 2rem;
-  text-align: center;
   line-height: 3;
-  background: #ebeff2;
   border-radius: 10px;
   margin: 10px 5px;
 }
