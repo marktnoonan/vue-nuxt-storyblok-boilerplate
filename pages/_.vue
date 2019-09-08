@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex items-center justify-between flex-wrap bg-green-800 p-6">
+    <nav class="flex items-center justify-between flex-wrap p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <nuxt-link to="/"><span class="font-semibold no-active text-xl tracking-tight">Autism Activities</span></nuxt-link>
       </div>
@@ -32,6 +32,11 @@
   </div>
 </template>
 
+<style scoped>
+nav {
+  background-color: #337ABB
+}
+</style>
 <script>
 const loadData = function({api, cacheVersion, errorCallback, version, path}) {
   return api.get(`cdn/stories/${path}`, {
