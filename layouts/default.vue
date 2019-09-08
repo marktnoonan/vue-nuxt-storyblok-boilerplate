@@ -38,6 +38,7 @@ html {
   max-width: 700px;
   margin: 20px auto;
   padding: 0 20px;
+  background-color: #fff;
 }
 
 .nuxt-link-exact-active {

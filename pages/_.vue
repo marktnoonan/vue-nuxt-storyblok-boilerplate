@@ -36,6 +36,9 @@
 nav {
   background-color: #337ABB
 }
+body {
+  background-image: linear-gradient(to bottom, #ff000026,#ffa50021,#ffff0036,#0080002b,#0000ff24,#4b008230,#c0cdfa3d, white);
+}
 </style>
 <script>
 const loadData = function({api, cacheVersion, errorCallback, version, path}) {
