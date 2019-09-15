@@ -49,5 +49,20 @@ html {
 .nuxt-link-exact-active.no-active {
   font-weight: normal;
 }
+
+.feature a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.feature .text-base {
+    font-size: 1.2rem;
+}
+
+.feature {
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    border-radius: 0;
+    padding: 2px 0 24px;
+}
 </style>
 
