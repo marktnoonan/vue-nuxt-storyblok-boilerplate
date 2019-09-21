@@ -21,7 +21,7 @@
         </div>
       </div>
     </nav>
-    <img src="//a.storyblok.com/f/65034/400x400/5f9efc440b/autism-activities.png" alt="Autism Activities Ireland" /> 
+    <img src="//a.storyblok.com/f/65034/400x400/e81a334ce3/autism-activities.png" alt="Autism Activities Ireland" class="autism-activities-logo"/> 
     <component v-if="story.content.component" :key="story.content._uid" :blok="story.content" :is="story.content.component | dashify"></component>
     <form name="contact" netlify hidden>
       <input type="text" name="name" />
@@ -40,6 +40,12 @@ nav {
 body {
   background-image: linear-gradient(to bottom, #ff000026,#ffa50021,#ffff0036,#0080002b,#0000ff24,#4b008230,#c0cdfa3d, white);
 }
+
+.autism-activities-logo {
+    margin: 0 auto;
+    width: 250px;
+}
+
 </style>
 <script>
 const loadData = function({api, cacheVersion, errorCallback, version, path}) {
