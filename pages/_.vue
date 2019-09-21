@@ -21,6 +21,7 @@
         </div>
       </div>
     </nav>
+    <img src="//a.storyblok.com/f/65034/400x400/5f9efc440b/autism-activities.png" alt="Autism Activities Ireland" /> 
     <component v-if="story.content.component" :key="story.content._uid" :blok="story.content" :is="story.content.component | dashify"></component>
     <form name="contact" netlify hidden>
       <input type="text" name="name" />
