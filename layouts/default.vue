@@ -61,7 +61,6 @@ html {
 
 .feature {
     border-radius: 0;
-    padding: 2px 0 24px;
 }
 </style>
 
