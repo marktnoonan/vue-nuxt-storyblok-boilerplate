@@ -48,7 +48,12 @@ body {
     margin: 0 auto;
     width: 250px;
 }
-
+.page-enter-active, .page-leave-active {
+  transition: opacity .4s
+}
+.page-enter, .page-leave-active {
+  opacity: 0
+}
 </style>
 <script>
 const loadData = function({api, cacheVersion, errorCallback, version, path}) {
