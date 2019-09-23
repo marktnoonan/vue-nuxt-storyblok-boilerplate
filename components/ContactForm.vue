@@ -1,5 +1,5 @@
 <template>
-  <form v-editable="blok" class="container mx-auto max-w-lg" name="contact" method="POST" data-netlify="true">
+  <form v-editable="blok" class="container mx-auto max-w-lg p-2 pb-24" name="contact" method="POST" data-netlify="true">
     <label class="block">
       <span class="text-gray-700">Name</span>
       <input class="form-input mt-1 block w-full" name="name" placeholder="Jane Doe">
@@ -28,7 +28,7 @@
     </label>
 
     <div class="flex mt-6">
-      <button type="submit">Submit</button>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
   </form>
 </template>
