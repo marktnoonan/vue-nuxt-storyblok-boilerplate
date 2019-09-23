@@ -15,8 +15,11 @@
           <nuxt-link to="/places" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
             Places
           </nuxt-link> -->
-          <nuxt-link to="/contact" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
-            Contact
+          <nuxt-link to="/about" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
+            About
+          </nuxt-link>
+          <nuxt-link to="/feedback" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
+            Feedback
           </nuxt-link>
         </div>
       </div>
