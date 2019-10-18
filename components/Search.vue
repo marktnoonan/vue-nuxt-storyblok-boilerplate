@@ -1188,12 +1188,6 @@ export default {
       ]
     };
   },
-  mounted() {
-    var options = {
-      keys: ['Category', 'Location']
-    };
-    this.fuse = new Fuse(this.items, options)
-  },
   methods: {
     search() {
       this.$search(this.searchTerm, this.items, this.searchOptions).then(results => {
