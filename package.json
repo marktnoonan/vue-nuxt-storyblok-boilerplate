@@ -17,7 +17,8 @@
     "leaflet": "^1.5.1",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "0.0.19",
-    "storyblok-nuxt": "1.0.0"
+    "storyblok-nuxt": "1.0.0",
+    "vue-fuse": "^2.1.2"
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.0",
