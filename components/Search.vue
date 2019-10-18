@@ -1,20 +1,71 @@
 <template>
   <div class="search__wrap">
-    <input type="text" v-model="searchTerm" @input="runSearch" />
+    <h1 class="text-2xl mx-auto w-64 text-center">
+      Search all activities:
+    </h1>
+    <input type="text" v-model="searchTerm" @input="search" class="border border-solid text-xl p-4 center mx-auto w-64" />
     <div
-      class="column feature p-2 text text-base leading-tight my-6 border-solid"
-      v-for="item in results"
-      :key="item.Name"
+      v-if="searchTerm.length"
+      class="feature p-2 text text-base leading-tight my-6 border border-solid"
+      v-for="(item, i) in results"
+      :key="item.Name + i"
     >
       <p>Name: {{item.Name}}</p>
       <p>Category: {{item.Category}}</p>
-      <p>Location: {{item["Address 1"]}}</p>
+      <p>Address 1: {{item["Address 1"]}}</p>
+      <p>Address 2: {{item["Address 2"]}}</p>
+      <p>Address 3: {{item["Address 3"]}}</p>
+      <p>Member only?: {{item["Member only?"]}}</p>
+      <p>Banner/Event details: {{item["Banner/Event details"]}}</p>
+      <p>Activity Type 1: {{item["Activity Type 1"]}}</p>
+      <p>Activity Type 2: {{item["Activity Type 2"]}}</p>
+      <p>Activity Type 3: {{item["Activity Type 3"]}}</p>
+      <p>Cost €: {{item["Cost €"]}}</p>
+      <p>First Date: {{item["First Date"]}}</p>
+      <p>Time: {{item["Time"]}}</p>
+      <p>Recurs?: {{item["Recurs?"]}}</p>
+      <p>Recurring frequency: {{item["Recurring frequency"]}}</p>
+      <p>Last date: {{item["Last date"]}}</p>
+      <p>Special notes: {{item["Special notes"]}}</p>
+      <p>Website/Facebook: {{item["Website/Facebook"]}}</p>
+      <p>Contact name: {{item["Contact name"]}}</p>
+      <p>Contact details: {{item["Contact details"]}}</p>
+      <p>Follow up: {{item["Follow up"]}}</p>
+      <p>Location: {{item[""]}}</p>
+    </div>
+    <div
+      v-if="!searchTerm.length"
+      class="feature p-2 text text-base leading-tight my-6 border border-solid"
+      v-for="(item, i) in items"
+      :key="item.Name + i"
+    >
+      <p>Name: {{item.Name}}</p>
+      <p>Category: {{item.Category}}</p>
+      <p>Address 1: {{item["Address 1"]}}</p>
+      <p>Address 2: {{item["Address 2"]}}</p>
+      <p>Address 3: {{item["Address 3"]}}</p>
+      <p>Member only?: {{item["Member only?"]}}</p>
+      <p>Banner/Event details: {{item["Banner/Event details"]}}</p>
+      <p>Activity Type 1: {{item["Activity Type 1"]}}</p>
+      <p>Activity Type 2: {{item["Activity Type 2"]}}</p>
+      <p>Activity Type 3: {{item["Activity Type 3"]}}</p>
+      <p>Cost €: {{item["Cost €"]}}</p>
+      <p>First Date: {{item["First Date"]}}</p>
+      <p>Time: {{item["Time"]}}</p>
+      <p>Recurs?: {{item["Recurs?"]}}</p>
+      <p>Recurring frequency: {{item["Recurring frequency"]}}</p>
+      <p>Last date: {{item["Last date"]}}</p>
+      <p>Special notes: {{item["Special notes"]}}</p>
+      <p>Website/Facebook: {{item["Website/Facebook"]}}</p>
+      <p>Contact name: {{item["Contact name"]}}</p>
+      <p>Contact details: {{item["Contact details"]}}</p>
+      <p>Follow up: {{item["Follow up"]}}</p>
+      <p>Location: {{item[""]}}</p>
     </div>
   </div>
 </template>
 
 <script>
-import VueFuse from "vue-fuse";
 
 export default {
   props: ["blok"],
@@ -24,7 +75,8 @@ export default {
       results: [],
       fuse: null,
       searchOptions: {
-      keys: ['Category', 'Location']
+      keys: ['Name', 'Category', 'Organization', "Address 1", "Address 2", "Address 3", "Banner/Event details"],
+      threshold: 0.4,
     },
       items: [
         {
@@ -1197,3 +1249,11 @@ export default {
   }
 };
 </script>
+
+<style>
+.search__wrap {
+  width: 600px;
+  max-width: 90vw;
+  margin: 0 auto
+}
+</style>

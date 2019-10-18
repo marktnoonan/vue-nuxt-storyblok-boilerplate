@@ -2,7 +2,7 @@
   <div>
     <nav class="flex items-center justify-between flex-wrap p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <nuxt-link to="/"><span class="font-semibold no-active text-xl tracking-tight">Autism Activities</span></nuxt-link>
+        <nuxt-link to="/"><span class="font-semibold no-active text-xl tracking-tight p-4 hover:bg-blue-700 border">Autism Activities</span></nuxt-link>
       </div>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
@@ -11,14 +11,14 @@
           </nuxt-link>
           <nuxt-link to="/events" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
             Events
-          </nuxt-link>
-          <nuxt-link to="/places" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
-            Places
           </nuxt-link> -->
-          <nuxt-link to="/about" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
+          <nuxt-link to="/about" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg hover:bg-blue-700 p-2">
             About
           </nuxt-link>
-          <nuxt-link to="/feedback" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg">
+          <nuxt-link to="/search" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg hover:bg-blue-700 p-2">
+            Search Activities
+          </nuxt-link>
+          <nuxt-link to="/feedback" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg hover:bg-blue-700 p-2">
             Feedback
           </nuxt-link>
         </div>

@@ -6,6 +6,9 @@ import Feature from '~/components/Feature.vue'
 import ContactForm from '~/components/ContactForm'
 import Search from '~/components/Search'
 import aaMap from '~/components/Map'
+import VueFuse from "vue-fuse";
+
+Vue.use(VueFuse)
 
 Vue.component('blok-page', Page)
 Vue.component('blok-teaser', Teaser)
