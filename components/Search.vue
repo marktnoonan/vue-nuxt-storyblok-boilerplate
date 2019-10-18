@@ -33,7 +33,6 @@
           <p>Contact name: {{item["Contact name"]}}</p>
           <p>Contact details: {{item["Contact details"]}}</p>
           <p>Follow up: {{item["Follow up"]}}</p>
-          <p>Location: {{item[""]}}</p>
         </article>
       </div>
 
@@ -65,7 +64,6 @@
         <p>Contact name: {{item["Contact name"]}}</p>
         <p>Contact details: {{item["Contact details"]}}</p>
         <p>Follow up: {{item["Follow up"]}}</p>
-        <p>Location: {{item[""]}}</p>
       </article>
   </div>
 </template>
