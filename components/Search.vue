@@ -1,6 +1,6 @@
 <template>
 <div class="search__wrap">
-  <div v-for="item in items" :key="item.Name">
+  <div class="column feature p-2 text text-base leading-tight my-6 border-solid" v-for="item in items" :key="item.Name">
     <p>{{item.Name}}</p>
     <p>{{item.Category}}</p>
     <p>{{item["Address 1"]}}</p>
