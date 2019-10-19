@@ -41,7 +41,8 @@
           <div class="text-xs text-bold">{{key}}</div>
           <div class="text-lg result-val">
             <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
-            <span v-else @click="searchTerm = val" class="regular-val">{{val}}</span>
+            <button v-if="searchOptions.keys.includes(key)" @click="searchTerm = val" class="clickable-val">{{val}}</button>
+            <span v-else>{{val}}</span>
           </div>
         </li>
       </ul>
