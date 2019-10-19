@@ -1,20 +1,59 @@
 <template>
   <div class="search__wrap">
-    <h1 class="text-2xl mx-auto w-64 text-center">Search all activities:</h1>
-    <input
-      type="text"
-      v-model="searchTerm"
-      class="block border border-solid text-xl p-4 center mx-auto w-64"
-    />
+    <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search all activities:</h1>
+    <div class="search-wrap">
+      <label>
+        <div class="w-64 mx-auto pb-2">Keyword:</div>
+        <input
+          type="text"
+          v-model="searchTerm"
+          class="block border rounded-lg border-gray-500 border-solid text-lg p-2 center mx-auto w-64"
+        />
+      </label>
+
+      <div class="flex justify-center mt-6 flex-col sm:flex-row">
+        <label class="p-4 text-center sm:text-left">
+          <div class="pb-2">Filter by location:</div>
+          <select
+            class="border rounded border-gray-500 w-64 sm:w-auto"
+            name="location"
+            id="location"
+            v-model="chosenLocation"
+          >
+            <option v-for="location in locations" :value="location" :key="location">{{location}}</option>
+          </select>
+        </label>
+        <label class="p-4 text-center sm:text-left">
+          <div class="pb-2">Filter by age range:</div>
+          <select class="border rounded border-gray-500 w-64 sm:w-auto" name="age" id="age" v-model="chosenRange">
+            <option v-for="range in ageRanges" :value="range" :key="range">{{range}}</option>
+          </select>
+        </label>
+        <div class="self-end w-40">
+          <transition name="fade" mode="out-in">
+            <button
+              v-if="searchTerm.length || chosenRange.length || chosenLocation.length"
+              class="md:self-end border border-blue-500 rounded my-4 px-6 block mx-auto"
+              @click="clear"
+            >Clear Search</button>
+          </transition>
+        </div>
+      </div>
+    </div>
+
     <transition name="fade" mode="out-in">
-      <div v-if="searchTerm.length" :key="searchTerm.length">
+      <div :key="searchTerm.length">
         <p class="my-10 text-xl">
-          Results found for "{{searchTerm}}":
-          <b>{{results.length}}</b>
+          Results found
+          <span v-if="searchTerm.length">for "{{searchTerm}}"</span>
+          <span v-if="chosenLocation.length">matching location "{{chosenLocation}}"</span>
+          <span v-if="chosenLocation.length && chosenRange.length">and</span>
+          <span v-if="chosenRange.length">matching age range "{{chosenRange}}"</span>:
+          <b>{{filteredResults.length}}</b>
         </p>
         <article
           class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
-          v-for="(item, i) in results"
+          v-for="(item, i) in filteredResults"
           :key="item.Name + i"
         >
           <ul class="results-card">
@@ -22,31 +61,40 @@
               <div class="text-xs">{{key}}</div>
               <div class="text-lg result-val">
                 <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
-                <button v-else-if="searchOptions.keys.includes(key)" @click="searchTerm = val" class="clickable-val">{{val}}</button>
+                <button
+                  v-else-if="searchOptions.keys.includes(key)"
+                  @click="searchTerm = val"
+                  class="clickable-val"
+                >{{val}}</button>
                 <span v-else>{{val}}</span>
               </div>
             </li>
           </ul>
         </article>
       </div>
+      <!-- <div v-if="!searchTerm.length" :key="searchTerm.length">
+        <article
+          class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
+          v-for="(item, i) in items"
+          :key="item.Name + i"
+        >
+          <ul class="results-card">
+            <li v-for="(val, key) in item" :key="key" v-show="val">
+              <div class="text-xs text-bold">{{key}}</div>
+              <div class="text-lg result-val">
+                <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
+                <button
+                  v-else-if="searchOptions.keys.includes(key)"
+                  @click="searchTerm = val"
+                  class="clickable-val"
+                >{{val}}</button>
+                <span v-else>{{val}}</span>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </div>-->
     </transition>
-    <article
-      v-show="!searchTerm.length"
-      class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
-      v-for="(item, i) in items"
-      :key="item.Name + i"
-    >
-      <ul class="results-card">
-        <li v-for="(val, key) in item" :key="key" v-show="val">
-          <div class="text-xs text-bold">{{key}}</div>
-          <div class="text-lg result-val">
-            <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
-            <button v-else-if="searchOptions.keys.includes(key)" @click="searchTerm = val" class="clickable-val">{{val}}</button>
-            <span v-else>{{val}}</span>
-          </div>
-        </li>
-      </ul>
-    </article>
   </div>
 </template>
 
@@ -56,8 +104,19 @@ export default {
   data() {
     return {
       searchTerm: "",
+      chosenLocation: "",
+      chosenRange: "",
       results: [],
       fuse: null,
+      allKeys: [
+        "Name",
+        "Category",
+        "Organisation",
+        "Address 1",
+        "Address 2",
+        "Address 3",
+        "Banner/Event details"
+      ],
       searchOptions: {
         keys: [
           "Name",
@@ -66,10 +125,12 @@ export default {
           "Address 1",
           "Address 2",
           "Address 3",
-          "Banner/Event details",
+          "Banner/Event details"
         ],
         threshold: 0.4
       },
+      locations: [],
+      ageRanges: [],
       items: [
         {
           Name: "Misc Prism",
@@ -1232,6 +1293,22 @@ export default {
       ]
     };
   },
+  created() {
+    let locations = this.items.map(item => [
+      item["Address 1"],
+      item["Address 2"],
+      item["Address 3"]
+    ]);
+    if (locations.length) {
+      // using concat() instead of flat() here to avoid some nuxt error
+      this.locations = new Set([].concat(...locations).sort());
+    }
+    let ageRanges = this.items.map(item => [item["Age"]]);
+    if (ageRanges.length) {
+      this.ageRanges = new Set([].concat(...ageRanges).sort());
+    }
+  },
+
   methods: {
     search() {
       this.$search(this.searchTerm, this.items, this.searchOptions).then(
@@ -1239,11 +1316,50 @@ export default {
           this.results = results;
         }
       );
+    },
+    clear() {
+      this.searchTerm = "";
+      this.chosenLocation = "";
+      this.chosenRange = "";
     }
   },
   watch: {
     searchTerm: function() {
-      this.search()
+      this.search();
+    }
+  },
+  computed: {
+    filteredResults: function() {
+      let output;
+
+      if (!this.searchTerm.length) {
+        output = this.items;
+      } else {
+        output = this.results;
+      }
+      if (!this.chosenLocation.length && !this.chosenRange.length) {
+        return output;
+      }
+
+      if (this.chosenLocation.length) {
+        output = output.filter(result => {
+          return (
+            result["Address 1"] == this.chosenLocation ||
+            result["Address 2"] == this.chosenLocation ||
+            result["Address 3"] == this.chosenLocation
+          );
+        });
+      }
+
+      if (this.chosenRange.length) {
+        if (this.chosenRange != "All") {
+          output = output.filter(result => {
+            return result["Age"] == this.chosenRange;
+          });
+        }
+      }
+
+      return output;
     }
   }
 };
