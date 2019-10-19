@@ -1277,7 +1277,8 @@ export default {
 
 .clickable-val {
   cursor: pointer;
-  color: green
+  color: green;
+  text-align: left;
 }
 
 .fade-enter-active,
