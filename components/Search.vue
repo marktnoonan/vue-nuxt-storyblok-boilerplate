@@ -1,75 +1,55 @@
 <template>
   <div class="search__wrap">
-    <h1 class="text-2xl mx-auto w-64 text-center">
-      Search all activities:
-    </h1>
-    <input type="text" v-model="searchTerm" @input="search" class="block border border-solid text-xl p-4 center mx-auto w-64" />
+    <h1 class="text-2xl mx-auto w-64 text-center">Search all activities:</h1>
+    <input
+      type="text"
+      v-model="searchTerm"
+      class="block border border-solid text-xl p-4 center mx-auto w-64"
+    />
     <transition name="fade" mode="out-in">
       <div v-if="searchTerm.length" :key="searchTerm.length">
-        <p class="my-10 text-xl">Results found for "{{searchTerm}}": <b>{{results.length}}</b></p>
+        <p class="my-10 text-xl">
+          Results found for "{{searchTerm}}":
+          <b>{{results.length}}</b>
+        </p>
         <article
-          class="feature p-2 text text-base leading-tight my-6 border border-solid"
+          class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
           v-for="(item, i) in results"
           :key="item.Name + i"
         >
-          <p>Name: {{item.Name}}</p>
-          <p>Category: {{item.Category}}</p>
-          <p>Address 1: {{item["Address 1"]}}</p>
-          <p>Address 2: {{item["Address 2"]}}</p>
-          <p>Address 3: {{item["Address 3"]}}</p>
-          <p>Member only?: {{item["Member only?"]}}</p>
-          <p>Banner/Event details: {{item["Banner/Event details"]}}</p>
-          <p>Activity Type 1: {{item["Activity Type 1"]}}</p>
-          <p>Activity Type 2: {{item["Activity Type 2"]}}</p>
-          <p>Activity Type 3: {{item["Activity Type 3"]}}</p>
-          <p>Cost €: {{item["Cost €"]}}</p>
-          <p>First Date: {{item["First Date"]}}</p>
-          <p>Time: {{item["Time"]}}</p>
-          <p>Recurs?: {{item["Recurs?"]}}</p>
-          <p>Recurring frequency: {{item["Recurring frequency"]}}</p>
-          <p>Last date: {{item["Last date"]}}</p>
-          <p>Special notes: {{item["Special notes"]}}</p>
-          <p>Website/Facebook: {{item["Website/Facebook"]}}</p>
-          <p>Contact name: {{item["Contact name"]}}</p>
-          <p>Contact details: {{item["Contact details"]}}</p>
-          <p>Follow up: {{item["Follow up"]}}</p>
+          <ul class="results-card">
+            <li v-for="(val, key) in item" :key="key" v-show="val">
+              <div class="text-xs">{{key}}</div>
+              <div class="text-lg result-val">
+                <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
+                <button v-if="searchOptions.keys.includes(key)" @click="searchTerm = val" class="clickable-val">{{val}}</button>
+                <span v-else>{{val}}</span>
+              </div>
+            </li>
+          </ul>
         </article>
       </div>
-
     </transition>
-      <article
-        v-if="!searchTerm.length"
-        class="feature p-2 text text-base leading-tight my-6 border border-solid"
-        v-for="(item, i) in items"
-        :key="item.Name + i"
-      >
-        <p>Name: {{item.Name}}</p>
-        <p>Category: {{item.Category}}</p>
-        <p>Address 1: {{item["Address 1"]}}</p>
-        <p>Address 2: {{item["Address 2"]}}</p>
-        <p>Address 3: {{item["Address 3"]}}</p>
-        <p>Member only?: {{item["Member only?"]}}</p>
-        <p>Banner/Event details: {{item["Banner/Event details"]}}</p>
-        <p>Activity Type 1: {{item["Activity Type 1"]}}</p>
-        <p>Activity Type 2: {{item["Activity Type 2"]}}</p>
-        <p>Activity Type 3: {{item["Activity Type 3"]}}</p>
-        <p>Cost €: {{item["Cost €"]}}</p>
-        <p>First Date: {{item["First Date"]}}</p>
-        <p>Time: {{item["Time"]}}</p>
-        <p>Recurs?: {{item["Recurs?"]}}</p>
-        <p>Recurring frequency: {{item["Recurring frequency"]}}</p>
-        <p>Last date: {{item["Last date"]}}</p>
-        <p>Special notes: {{item["Special notes"]}}</p>
-        <p>Website/Facebook: {{item["Website/Facebook"]}}</p>
-        <p>Contact name: {{item["Contact name"]}}</p>
-        <p>Contact details: {{item["Contact details"]}}</p>
-        <p>Follow up: {{item["Follow up"]}}</p>
-      </article>
+    <article
+      v-show="!searchTerm.length"
+      class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
+      v-for="(item, i) in items"
+      :key="item.Name + i"
+    >
+      <ul class="results-card">
+        <li v-for="(val, key) in item" :key="key" v-show="val">
+          <div class="text-xs text-bold">{{key}}</div>
+          <div class="text-lg result-val">
+            <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
+            <span v-else @click="searchTerm = val" class="regular-val">{{val}}</span>
+          </div>
+        </li>
+      </ul>
+    </article>
   </div>
 </template>
 
 <script>
-
 export default {
   props: ["blok"],
   data() {
@@ -78,9 +58,17 @@ export default {
       results: [],
       fuse: null,
       searchOptions: {
-      keys: ['Name', 'Category', 'Organization', "Address 1", "Address 2", "Address 3", "Banner/Event details"],
-      threshold: 0.4,
-    },
+        keys: [
+          "Name",
+          "Category",
+          "Organization",
+          "Address 1",
+          "Address 2",
+          "Address 3",
+          "Banner/Event details"
+        ],
+        threshold: 0.4
+      },
       items: [
         {
           Name: "Misc Prism",
@@ -1245,9 +1233,16 @@ export default {
   },
   methods: {
     search() {
-      this.$search(this.searchTerm, this.items, this.searchOptions).then(results => {
-        this.results = results
-      })
+      this.$search(this.searchTerm, this.items, this.searchOptions).then(
+        results => {
+          this.results = results;
+        }
+      );
+    }
+  },
+  watch: {
+    searchTerm: function() {
+      this.search()
     }
   }
 };
@@ -1257,13 +1252,39 @@ export default {
 .search__wrap {
   width: 600px;
   max-width: 90vw;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .6s
+.results-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
 }
-.fade-enter, .fade-leave-active {
-  opacity: 0
+
+.results-card__wrap {
+  box-shadow: 0px 0px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+.result-val {
+  word-break: break-word;
+}
+
+.feature a.font-thin {
+  font-weight: 200;
+}
+
+.clickable-val {
+  cursor: pointer;
+  color: green
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.6s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
