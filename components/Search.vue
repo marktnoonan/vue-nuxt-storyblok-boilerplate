@@ -1,6 +1,6 @@
 <template>
   <div class="search__wrap" id="search-top">
-    <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search all activities:</h1>
+    <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search All Activities:</h1>
     <div class="search-wrap">
       <label>
         <div class="w-64 mx-auto pb-2">Keyword:</div>
