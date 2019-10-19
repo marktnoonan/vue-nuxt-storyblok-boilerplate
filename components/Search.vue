@@ -61,11 +61,11 @@ export default {
         keys: [
           "Name",
           "Category",
-          "Organization",
+          "Organisation",
           "Address 1",
           "Address 2",
           "Address 3",
-          "Banner/Event details"
+          "Banner/Event details",
         ],
         threshold: 0.4
       },
