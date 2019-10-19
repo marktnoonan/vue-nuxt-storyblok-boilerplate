@@ -1,5 +1,5 @@
 <template>
-  <div class="search__wrap">
+  <div class="search__wrap" id="search-top">
     <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search all activities:</h1>
     <div class="search-wrap">
       <label>
@@ -63,7 +63,7 @@
                 <a v-if="key == 'Website/Facebook'" :href="val" class="text-sm font-thin">{{val}}</a>
                 <button
                   v-else-if="searchOptions.keys.includes(key)"
-                  @click="searchTerm = val"
+                  @click="searchFromClick"
                   class="clickable-val"
                 >{{val}}</button>
                 <span v-else>{{val}}</span>
@@ -99,6 +99,8 @@
 </template>
 
 <script>
+import scrollToElement from 'scroll-to-element'
+
 export default {
   props: ["blok"],
   data() {
@@ -1316,6 +1318,10 @@ export default {
           this.results = results;
         }
       );
+    },
+    searchFromClick(event) {
+      this.searchTerm = event.target.textContent;
+      scrollToElement("#search-top");
     },
     clear() {
       this.searchTerm = "";
