@@ -1376,6 +1376,7 @@ export default {
   width: 600px;
   max-width: 90vw;
   margin: 0 auto;
+  margin-bottom: 600px;
 }
 
 .results-card {
