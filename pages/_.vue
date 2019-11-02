@@ -24,7 +24,10 @@
         </div>
       </div>
     </nav>
-    <img src="//a.storyblok.com/f/65034/400x400/e81a334ce3/autism-activities.png" alt="Autism Activities Ireland" class="autism-activities-logo"/> 
+    <img 
+    v-if="this.$route.path == '/'"
+    src="//a.storyblok.com/f/65034/400x400/e81a334ce3/autism-activities.png" alt="Autism Activities Ireland" 
+    class="autism-activities-logo"/> 
     <component v-if="story.content.component" :key="story.content._uid" :blok="story.content" :is="story.content.component | dashify"></component>
     <form name="contact" netlify hidden>
       <input type="text" name="name" />
@@ -75,7 +78,9 @@ const loadData = function({api, cacheVersion, errorCallback, version, path}) {
 
 export default {
   data () {
-    return { story: { content: {} } }
+    return { 
+      story: { content: {} }
+      }
   },
   mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
@@ -87,6 +92,7 @@ export default {
         window.location.reload()
       }
     })
+    console.log(this.$route)
   },
   asyncData (context) {
     // Check if we are in the editing mode
