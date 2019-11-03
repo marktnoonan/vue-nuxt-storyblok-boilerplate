@@ -82,6 +82,11 @@ export default {
       story: { content: {} }
       }
   },
+  head () {
+    return {
+      title: "AutismActivities.ie"
+    }
+  },
   mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
