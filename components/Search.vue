@@ -44,12 +44,6 @@
           </transition>
         </div>
       </div>
-      <div>
-        <button
-          class="md:self-end border border-blue-500 rounded my-4 px-6 block mx-auto"
-          @click="sortByCategory"
-        >Sort By Category</button>
-      </div>
     </div>
 
     <transition name="fade" mode="out-in">
@@ -153,7 +147,6 @@ export default {
       locations: [],
       ageRanges: [],
       categories: [],
-      sortByCategoryFlag: false,
       items: [
         {
           Name: "Radisson Sligo",
@@ -2542,24 +2535,16 @@ export default {
       this.searchTerm = "";
       this.chosenLocation = "";
       this.chosenAge = "";
-    },
-    sortByCategory() {
-      console.log("sort by category", this.sortByCategoryFlag);
-      this.sortByCategoryFlag = !this.sortByCategoryFlag;
     }
   },
   watch: {
     searchTerm: function() {
       this.search();
-    },
-    sortByCategoryFlag: function() {
-      // this.search();
     }
   },
   computed: {
     filteredResults: function() {
       let output;
-      console.log(this.sortByCategoryFlag);
 
       if (!this.searchTerm.length) {
         output = this.items;
@@ -2600,13 +2585,6 @@ export default {
               }
             });
         }
-      }
-
-      if (this.sortByCategoryFlag) {
-        output.sort(function(a, b) {
-          console.log(`sorting ${a.Category} against ${b.Category}`);
-          return a.Category < b.Category;
-        });
       }
       return output;
     }
