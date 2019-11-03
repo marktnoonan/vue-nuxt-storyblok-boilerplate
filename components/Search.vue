@@ -32,6 +32,7 @@
             id="age"
             v-model="chosenAge"
             type="number"
+            min="1"
           />
         </label>
         <div class="self-end w-40">
@@ -47,7 +48,7 @@
     </div>
 
     <transition name="fade" mode="out-in">
-      <div :key="searchTerm.length">
+      <div :key="searchTerm.length + chosenLocation.length + chosenAge.length">
         <p class="my-10 text-xl">
           Results found
           <span v-if="searchTerm.length">for "{{searchTerm}}"</span>
@@ -56,7 +57,7 @@
           <span v-if="chosenAge.length">matching age "{{chosenAge}}"</span>:
           <b>{{filteredResults.length}}</b>
         </p>
-        <div class="results__wrap" v-if="searchTerm.length">
+        <!-- <div class="results__wrap" v-if="searchTerm.length">
           <article
             class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
             v-for="(item, i) in filteredResults"
@@ -64,8 +65,8 @@
           >
             <ResultsCard :item="item" />
           </article>
-        </div>
-        <div class="categories__wrap" v-if="!searchTerm.length">
+        </div> -->
+        <div class="categories__wrap">
           <details
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
             v-for="category in categories"
