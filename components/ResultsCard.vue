@@ -23,7 +23,7 @@
     </li>
     <li>
       <div class="label">Cost</div>
-      {{item["Cost €"] || "Free"}}
+      {{item["Cost €"] ? "€" : ""}}{{item["Cost €"] || "Free"}}
     </li>
     <li v-if="item['Age']">
       <div class="label">Age</div>

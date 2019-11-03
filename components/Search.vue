@@ -2562,7 +2562,7 @@ export default {
         console.log(this.chosenAge);
         output = output
           .filter(result => {
-            if (this.chosenAge > 18) {
+            if (parseInt(this.chosenAge) > 18) {
               return result["Age sorting"].split(", ").includes("Adult");
             } else {
               return result["Age sorting"].split(", ").includes(this.chosenAge);
