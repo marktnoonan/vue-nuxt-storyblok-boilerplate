@@ -3,7 +3,7 @@
     <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search All Activities</h1>
     <div class="search-wrap">
       <label>
-        <div class="w-64 mx-auto pb-2">Keyword:</div>
+        <div class="w-64 mx-auto pb-2 text-center">Keyword:</div>
         <input
           type="text"
           v-model="searchTerm"
@@ -12,11 +12,11 @@
       </label>
 
       <!-- <div class="flex justify-center mt-6 flex-col sm:flex-row"> -->
-      <div class>
-        <label class="p-4 text-center sm:text-left">
+      <div class="text-center">
+        <label class="pt-4 block">
           <div class="pb-2">Filter by location:</div>
           <select
-            class="border rounded border-gray-500 w-64 sm:w-auto"
+            class="border rounded border-gray-500 w-64"
             name="location"
             id="location"
             v-model="chosenLocation"
@@ -24,10 +24,10 @@
             <option v-for="location in locations" :value="location" :key="location">{{location}}</option>
           </select>
         </label>
-        <label class="p-4 text-center sm:text-left">
-          <div class="pb-2 pt-6">Filter by age</div>
+        <label class="p-4 block">
+          <span>Filter by age: </span>
           <input
-            class="border rounded border-gray-500 w-64"
+            class="border rounded border-gray-500 w-16"
             name="age"
             id="age"
             v-model="chosenAge"
@@ -70,17 +70,16 @@
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
             v-for="category in categories"
             v-show="filteredResults.find(item => item.Category == category)"
-            :open="(searchTerm.length > 0 || chosenAge.length > 0)"
             :key="category"
             :style="{
-          border: '1px solid ' + colors[category.split(' ')[0]],
+          outline: '1px solid ' + colors[category.split(' ')[0]],
           padding: '14px',
           display: 'block',
         }"
           >
           
             <summary
-            >{{category || "Uncategorized"}}</summary>
+            >{{category || "Uncategorized"}} ({{filteredResults.filter(item => item.Category == category).length}} result{{filteredResults.filter(item => item.Category == category).length > 1 ? 's' : ''}})</summary>
             <div
               class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
               v-for="(item, i) in filteredResults"
@@ -2558,9 +2557,7 @@ export default {
       if (this.chosenLocation.length) {
         output = output.filter(result => {
           return (
-            result["Address 1"] == this.chosenLocation ||
-            result["Address 2"] == this.chosenLocation ||
-            result["Address 3"] == this.chosenLocation
+            result["Address 1"] == this.chosenLocation
           );
         });
       }
@@ -2638,6 +2635,14 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
   grid-gap: 20px; */
   padding: 20px;
+}
+
+summary {
+  cursor: pointer;
+}
+
+details {
+  /* transition: all .2s linear; */
 }
 
 .results-card__wrap {

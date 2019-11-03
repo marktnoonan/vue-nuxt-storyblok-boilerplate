@@ -1,9 +1,10 @@
 <template>
   <ul class="results-card leading-relaxed" :class="'cat__' + item.Category">
     <li>
-      <div class="text-xl font-semibold pb-1">{{item.Name}}</div>
+      <div class="text-xl font-semibold pb-1 text-center">{{item.Name}}</div>
     </li>
     <li v-if="item.Category || item['Banner']">
+      <div class="label">Category</div>
       {{item.Category}}
       <span v-if="item.Category && item['Banner']">-</span>
       {{item["Banner"]}}
@@ -12,7 +13,7 @@
         class="bg-red-500 text-white text-xs font-bold py-1 px-2"
       >Member Only</span>
     </li>
-    <li>
+    <li v-if="item['Event details']">
       <div class="label">Details</div>
       {{item["Event details"]}}
     </li>
@@ -32,7 +33,7 @@
       <div class="label">Special Notes</div>
       {{item["Special notes"]}}
     </li>
-    <li>
+    <li v-if="item['FULL ADDRESS']">
       <div class="label">Location</div>
       <a
         class="font-thin"
