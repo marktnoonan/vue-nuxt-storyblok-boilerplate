@@ -16,7 +16,7 @@
         <label class="pt-4 block">
           <div class="pb-2">Filter by location:</div>
           <select
-            class="border rounded border-gray-500 w-64"
+            class="border rounded border-gray-500 w-64 text-lg p-2"
             name="location"
             id="location"
             v-model="chosenLocation"
@@ -25,9 +25,9 @@
           </select>
         </label>
         <label class="p-4 block">
-          <span>Filter by age: </span>
+          <span>Filter by age:</span>
           <input
-            class="border rounded border-gray-500 w-16"
+            class="border rounded border-gray-500 w-16 text-lg p-2"
             name="age"
             id="age"
             v-model="chosenAge"
@@ -77,9 +77,7 @@
           display: 'block',
         }"
           >
-          
-            <summary
-            >{{category || "Uncategorized"}} ({{filteredResults.filter(item => item.Category == category).length}} result{{filteredResults.filter(item => item.Category == category).length > 1 ? 's' : ''}})</summary>
+            <summary>{{category || "Uncategorized"}} ({{filteredResults.filter(item => item.Category == category).length}} result{{filteredResults.filter(item => item.Category == category).length > 1 ? 's' : ''}})</summary>
             <div
               class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
               v-for="(item, i) in filteredResults"
@@ -2556,32 +2554,27 @@ export default {
 
       if (this.chosenLocation.length) {
         output = output.filter(result => {
-          return (
-            result["Address 1"] == this.chosenLocation
-          );
+          return result["Address 1"] == this.chosenLocation;
         });
       }
 
       if (this.chosenAge.length) {
-        if (this.chosenAge != "All") {
-          console.log(this.chosenAge);
-          output = output
-            .filter(result => {
-              console.log(
-                "Matches age? " + this.chosenAge,
-                result["Age sorting"].split(",").includes(this.chosenAge),
-                result["Age sorting"].split(", ")
-              );
+        console.log(this.chosenAge);
+        output = output
+          .filter(result => {
+            if (this.chosenAge > 18) {
+              return result["Age sorting"].split(", ").includes("Adult");
+            } else {
               return result["Age sorting"].split(", ").includes(this.chosenAge);
-            })
-            .sort(function(a, b) {
-              if (b["Age"] == "All") {
-                return -1;
-              } else {
-                return 1;
-              }
-            });
-        }
+            }
+          })
+          .sort(function(a, b) {
+            if (b["Age"] == "All") {
+              return -1;
+            } else {
+              return 1;
+            }
+          });
       }
       return output;
     }
