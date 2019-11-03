@@ -92,7 +92,6 @@ export default {
         window.location.reload()
       }
     })
-    console.log(this.$route)
   },
   asyncData (context) {
     // Check if we are in the editing mode
