@@ -23,7 +23,7 @@
           >AutismActivities.ie does its best to ensure the accuracy of all listings, but cannot be held responsible for errors. Users are encouraged to contact the service providers directly to confirm details.</p>
           <p>
             We are still working out the best way to organize this information, and what kinds of searches are most useful. Please use the
-            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link>to contact us with your feedback and ideas.
+            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link> to contact us with your feedback and ideas.
           </p>
         </div>
       </div>
