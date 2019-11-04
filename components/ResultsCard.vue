@@ -5,7 +5,11 @@
     </li>
     <li v-if="item.Category || item['Banner']">
       <div class="label">Category</div>
-      {{item.Category}}
+       <button
+          @click="searchFromClick"
+          class="clickable-val"
+        >{{item.Category}}</button>
+     
       <span v-if="item.Category && item['Banner']">-</span>
       {{item["Banner"]}}
       <span
@@ -57,7 +61,12 @@
 
 <script>
 export default {
-  props:["item"]
+  props:["item"],
+  methods: {
+    searchFromClick(event) {
+      this.$emit('searchFromClick', event.target.textContent)
+    }
+  }
 };
 </script>
 

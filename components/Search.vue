@@ -111,7 +111,7 @@
               v-show="item.Region == region"
               :key="item.Name + i"
             >
-              <ResultsCard v-if="item.Region == region" :item="item" />
+              <ResultsCard v-if="item.Region == region" :item="item" @searchFromClick='searchFromClick'/>
             </div>
           </details>
         </div>
@@ -2767,8 +2767,8 @@ export default {
         }
       );
     },
-    searchFromClick(event) {
-      this.searchTerm = event.target.textContent;
+    searchFromClick(newSearchTerm) {
+      this.searchTerm = newSearchTerm;
       scrollToElement("#search-top");
     },
     clear() {
