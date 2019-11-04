@@ -16,7 +16,7 @@
             About
           </nuxt-link>
           <nuxt-link to="/search" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg hover:bg-blue-700 p-2">
-            Search Activities
+            Find Activities
           </nuxt-link>
           <nuxt-link to="/feedback" class="block mt-4 lg:inline-block lg:mt-0 text-green-100 hover:text-white mr-4 text-lg hover:bg-blue-700 p-2">
             Feedback

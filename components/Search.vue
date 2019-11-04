@@ -115,7 +115,7 @@
             </div>
           </details>
         </div>
-        <h2 class="text-2xl mt-16 block">All around the country:</h2>
+        <h2 v-if="(filteredResults.filter(item => item.Region == '').length) || (filteredResults.filter(item => item.Region == 'Nationwide').length)" class="text-2xl mt-16 block">All around the country:</h2>
         <div class="categories__wrap">
           <details
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
