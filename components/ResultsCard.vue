@@ -53,7 +53,7 @@
     </li>
     <li v-if="item['Tel:']">
       <div class="label">Tel</div>
-      <a class="font-thin" :href="'tel:'+item['Tel:']">{{item["Tel:"]}}</a>
+      <a class="font-thin" :href="'tel:+'+item['Tel:']">{{item["Tel:"]}}</a>
     </li>
     <!-- <li>Contact: {{item["Address 1"]}}</li> -->
   </ul>
