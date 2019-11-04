@@ -21,9 +21,9 @@
       <div class="label">When?</div>
       {{item["When?"]}}
     </li>
-    <li>
+    <li v-if="item['W]]Cost €']">
       <div class="label">Cost</div>
-      {{item["Cost €"] ? "€" : ""}}{{item["Cost €"] || "Free"}}
+      {{item["Cost €"]}}
     </li>
     <li v-if="item['Age']">
       <div class="label">Age</div>

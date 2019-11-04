@@ -1,5 +1,30 @@
 <template>
   <div class="search__wrap" id="search-top">
+    <div
+      class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-6"
+      role="alert"
+    >
+      <div class="flex">
+        <div class="py-1">
+          <svg
+            class="fill-current h-6 w-6 text-teal-500 mr-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+            />
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">About these search results</p>
+          <p>
+            We are still working out the best way to organize this information, and what kinds of searches are most useful. Please use the
+            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link> to contact us with your feedback and ideas.
+          </p>
+        </div>
+      </div>
+    </div>
     <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search All Activities</h1>
     <div class="search-wrap">
       <label>
@@ -14,7 +39,7 @@
       <!-- <div class="flex justify-center mt-6 flex-col sm:flex-row"> -->
       <div class="text-center">
         <label class="pt-4 block">
-          <div class="pb-2">Filter by location:</div>
+          <div class="pb-2">Filter by specific location:</div>
           <select
             class="border rounded border-gray-500 w-64 text-lg p-2"
             name="location"
@@ -25,7 +50,7 @@
           </select>
         </label>
         <label class="p-4 block">
-          <span>Filter by age:</span>
+          <span>Filter by age of person:</span>
           <input
             class="border rounded border-gray-500 w-16 text-lg p-2"
             name="age"
@@ -65,27 +90,52 @@
           >
             <ResultsCard :item="item" />
           </article>
-        </div> -->
+        </div>-->
+        <h2 class="text-2xl">In your area:</h2>
         <div class="categories__wrap">
           <details
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
-            v-for="category in categories"
-            v-show="filteredResults.find(item => item.Category == category)"
-            :key="category"
+            v-for="region in regions"
+            v-show="filteredResults.find(item => item.Region == region)"
+            :key="region"
             :style="{
-          outline: '1px solid ' + colors[category.split(' ')[0]],
+          outline: '1px solid ' + colors[region.split(' ')[0]] || 'royalbue',
           padding: '14px',
           display: 'block',
         }"
           >
-            <summary>{{category || "Uncategorized"}} ({{filteredResults.filter(item => item.Category == category).length}} result{{filteredResults.filter(item => item.Category == category).length > 1 ? 's' : ''}})</summary>
+            <summary>{{region || "No Region"}} ({{filteredResults.filter(item => item.Region == region).length}} result{{filteredResults.filter(item => item.Region == region).length > 1 ? 's' : ''}})</summary>
             <div
               class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
               v-for="(item, i) in filteredResults"
-              v-show="item.Category == category"
+              v-show="item.Region == region"
               :key="item.Name + i"
             >
-              <ResultsCard v-if="item.Category == category" :item="item" />
+              <ResultsCard v-if="item.Region == region" :item="item" />
+            </div>
+          </details>
+        </div>
+        <h2 class="text-2xl mt-16 block">All around the country:</h2>
+        <div class="categories__wrap">
+          <details
+            class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
+            v-for="region in ['', 'Nationwide']"
+            v-show="filteredResults.find(item => item.Region == region)"
+            :key="region"
+            :style="{
+          outline: '1px solid ' + colors[region.split(' ')[0]] || 'royalbue',
+          padding: '14px',
+          display: 'block',
+        }"
+          >
+            <summary>{{region || "No Region"}} ({{filteredResults.filter(item => item.Region == region).length}} result{{filteredResults.filter(item => item.Region == region).length > 1 ? 's' : ''}})</summary>
+            <div
+              class="results-card__wrap feature p-2 text text-base leading-tight my-6 border border-solid"
+              v-for="(item, i) in filteredResults"
+              v-show="item.Region == region"
+              :key="item.Name + i"
+            >
+              <ResultsCard v-if="item.Region == region" :item="item" />
             </div>
           </details>
         </div>
@@ -145,6 +195,7 @@ export default {
       locations: [],
       ageRanges: [],
       categories: [],
+      regions: ["Connacht", "Ulster", "Munster", "Leinster"],
       items: [
         {
           Name: "Radisson Sligo",
@@ -160,10 +211,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Connacht",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.radissonhotels.com/en-us/hotels/radisson-blu-sligo-spa?checkInDate=2019-11-01&checkOutDate=2019-11-02&adults%5B%5D=1&children%5B%5D=0&searchType=lowest&promotionCode=",
@@ -187,10 +240,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Clayton Hotel, Clarion Road, Sligo, F91 N8EF",
+          Region: "Connacht",
           "Address 4": "Clayton Hotel,",
           "Address 3": "Clarion Road,",
           "Address 2": "Sligo,",
           "Address 1": "",
+          "": "",
           Postcode: "F91 N8EF",
           "Website/Facebook":
             "https://www.claytonhotelsligo.com/leisure/sensory-room/",
@@ -214,10 +269,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Clonkilty Park Hotel, Park Road, Clonakilty, Co Cork, P85 RD23",
+          Region: "Munster",
           "Address 4": "Clonkilty Park Hotel,",
           "Address 3": "Park Road,",
           "Address 2": "Clonakilty,",
           "Address 1": "Co Cork,",
+          "": "",
           Postcode: "P85 RD23",
           "Website/Facebook":
             "https://www.clonakiltyparkhotel.ie/autism-friendly.html",
@@ -239,11 +296,13 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "",
-          "Address 4": "",
-          "Address 3": "",
-          "Address 2": "",
-          "Address 1": "",
+          "FULL ADDRESS": "Ballynoe House HotelDunowenArdfieldClonakilty",
+          Region: "Munster",
+          "Address 4": "Ballynoe House Hotel",
+          "Address 3": "Dunowen",
+          "Address 2": "Ardfield",
+          "Address 1": "Clonakilty",
+          "": "Co Cork",
           Postcode: "",
           "Website/Facebook":
             "https://ballynoehouse.ie/autism-friendly-accommodation-environment/",
@@ -265,10 +324,12 @@ export default {
           "Age sorting": "13, 14, 15, 16, 17, 18, 19",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -291,13 +352,15 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "The Gap, Riverstown, Tramore, Waterford, X91 Y436",
+          Region: "Munster",
           "Address 4": "The Gap,",
           "Address 3": "Riverstown,",
           "Address 2": "Tramore,",
           "Address 1": "Waterford,",
+          "": "",
           Postcode: "X91 Y436",
           "Website/Facebook": "www.freedomsurfschool.com",
-          "Tel:": 354000000000,
+          "Tel:": 353863914908,
           "Contact name": "",
           "Contact details": "",
           "Follow up": ""
@@ -316,13 +379,15 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "11A Altona Road, Blaris Industrial Estate, Lisburn, Antrim, BT27 5QB",
+          Region: "Ulster",
           "Address 4": "11A Altona Road,",
           "Address 3": "Blaris Industrial Estate,",
           "Address 2": "Lisburn,",
           "Address 1": "Antrim,",
+          "": "",
           Postcode: "BT27 5QB",
           "Website/Facebook": "https://highriseni.org/",
-          "Tel:": 443000000000,
+          "Tel:": 442892636195,
           "Contact name": "Adam Louden",
           "Contact details": "",
           "Follow up": "email follow to LinkedIn outreach"
@@ -340,10 +405,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Longford,",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Longford,",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -365,10 +432,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "call Michael 087 9877 342",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "call Michael 087 9877 342",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -390,10 +459,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Baldoyle Family Resource Services, Grange Road, Dublin 13, Dublin, D13 TE80",
+          Region: "Leinster",
           "Address 4": "Baldoyle Family Resource Services,",
           "Address 3": "Grange Road,",
           "Address 2": "Dublin 13,",
           "Address 1": "Dublin,",
+          "": "",
           Postcode: "D13 TE80",
           "Website/Facebook":
             "https://www.facebook.com/baldoylefamilyresourcecentre/",
@@ -416,10 +487,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Innovate Wexford Park, Clonard Road, Wexford, Y35 RT91",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "Innovate Wexford Park,",
           "Address 2": "Clonard Road,",
           "Address 1": "Wexford,",
+          "": "",
           Postcode: "Y35 RT91",
           "Website/Facebook":
             "https://www.eventbrite.ie/e/cul-camp-for-kids-on-the-autism-spectrum-tickets-64062356232#",
@@ -443,10 +516,12 @@ export default {
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 12",
           "Special notes": "",
           "FULL ADDRESS": "Dublin Road, Ballyoulster, Celbridge, Kildare,",
+          Region: "Leinster",
           "Address 4": "Dublin Road,",
           "Address 3": "Ballyoulster,",
           "Address 2": "Celbridge,",
           "Address 1": "Kildare,",
+          "": "",
           Postcode: "",
           "Website/Facebook": "https://www.facebook.com/Celbridgefootball/",
           "Tel:": "",
@@ -469,10 +544,12 @@ export default {
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 13",
           "Special notes": "",
           "FULL ADDRESS": "Dublin Road, Ballyoulster, Celbridge, Kildare",
+          Region: "Leinster",
           "Address 4": "Dublin Road,",
           "Address 3": "Ballyoulster,",
           "Address 2": "Celbridge,",
           "Address 1": "Kildare",
+          "": "",
           Postcode: "",
           "Website/Facebook": "https://www.facebook.com/Celbridgefootball/",
           "Tel:": "",
@@ -494,10 +571,12 @@ export default {
           "Age sorting": "5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16",
           "Special notes": "",
           "FULL ADDRESS": "Strand, Bundoran, Donegal, F94HK72",
+          Region: "Ulster",
           "Address 4": "",
           "Address 3": "Strand,",
           "Address 2": "Bundoran,",
           "Address 1": "Donegal,",
+          "": "",
           Postcode: "F94HK72",
           "Website/Facebook": "https://www.liquidtherapy.ie",
           "Tel:": "",
@@ -520,10 +599,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Liffey Valley Shopping Centre, Fonthill Road, Palmerstown Upr, Dublin 22,",
+          Region: "Leinster",
           "Address 4": "Liffey Valley Shopping Centre,",
           "Address 3": "Fonthill Road,",
           "Address 2": "Palmerstown Upr,",
           "Address 1": "Dublin 22,",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -544,10 +625,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Clogheenavodig, Gurteenomahon, Cork",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "Clogheenavodig,",
           "Address 2": "Gurteenomahon,",
           "Address 1": "Cork",
+          "": "",
           Postcode: "",
           "Website/Facebook": "https://konfidentkidz.ie/seo/asd-classes/",
           "Tel:": "",
@@ -569,10 +652,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Nationwide",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "https://www.autcraft.com/",
           "Tel:": "",
@@ -596,10 +681,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "JumpBox, 4 Waringsford Road, Banbridge, Down, BY32 4EH",
+          Region: "Ulster",
           "Address 4": "JumpBox,",
           "Address 3": "4 Waringsford Road,",
           "Address 2": "Banbridge,",
           "Address 1": "Down,",
+          "": "",
           Postcode: "BY32 4EH",
           "Website/Facebook": "http://www.jumpboxxni.co.uk/InclusionJump",
           "Tel:": "",
@@ -623,10 +710,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Newry Leisure Centre, Cecil Street, Newry, Down, BT35 6AU",
+          Region: "Ulster",
           "Address 4": "Newry Leisure Centre,",
           "Address 3": "Cecil Street,",
           "Address 2": "Newry,",
           "Address 1": "Down,",
+          "": "",
           Postcode: "BT35 6AU",
           "Website/Facebook": "",
           "Tel:": "",
@@ -649,10 +738,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Newry Leisure Centre, Cecil Street, Newry, Down, BT35 6AU",
+          Region: "Ulster",
           "Address 4": "Newry Leisure Centre,",
           "Address 3": "Cecil Street,",
           "Address 2": "Newry,",
           "Address 1": "Down,",
+          "": "",
           Postcode: "BT35 6AU",
           "Website/Facebook": "",
           "Tel:": "",
@@ -673,10 +764,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -699,10 +792,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Best O Matz, Unit N Kells Business Park, Kells, Meath,",
+          Region: "Leinster",
           "Address 4": "Best O Matz,",
           "Address 3": "Unit N Kells Business Park,",
           "Address 2": "Kells,",
           "Address 1": "Meath,",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.bestomatz.ie/sensory-room.asp",
           "Tel:": "",
@@ -724,10 +819,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -751,10 +848,12 @@ export default {
             "Bookable for 30 min sessions by phonining 061 557726",
           "FULL ADDRESS":
             "Watch House Cross Community Library, Watch House Cross Shopping CentreKileely RoadLimerickV94 NH51",
+          Region: "Munster",
           "Address 4": "Watch House Cross Community Library,",
           "Address 3": "Watch House Cross Shopping Centre",
           "Address 2": "Kileely Road",
           "Address 1": "Limerick",
+          "": "",
           Postcode: "V94 NH51",
           "Website/Facebook":
             "http://www.limerickcity.ie/Library/WatchHouseCrossCommunityLibrary/",
@@ -776,10 +875,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.facebook.com/pg/Surf2Heal-Gtown-297334447472914/posts/",
@@ -803,10 +904,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Nangor Road Business ParkNangor Road, Dublin 12DublinD12 TNY6",
+          Region: "Leinster",
           "Address 4": "Nangor Road Business Park",
           "Address 3": "Nangor Road,",
           "Address 2": "Dublin 12",
           "Address 1": "Dublin",
+          "": "",
           Postcode: "D12 TNY6",
           "Website/Facebook": "https://inflatazone.ie/jump-zone-autism/",
           "Tel:": "",
@@ -828,10 +931,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "varies",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "varies",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -853,10 +958,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Celbridge Community Centre, CelbridgeCo Kildare",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "Celbridge Community Centre,",
           "Address 2": "Celbridge",
           "Address 1": "Co Kildare",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -878,10 +985,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "St Peter's GAA HallDunboyneCo Meath",
+          Region: "Leinster",
           "Address 4": "St Peter's GAA Hall",
           "Address 3": "",
           "Address 2": "Dunboyne",
           "Address 1": "Co Meath",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -903,10 +1012,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Kilocck GAA clubKilcockCo Kildare",
+          Region: "Leinster",
           "Address 4": "Kilocck GAA club",
           "Address 3": "",
           "Address 2": "Kilcock",
           "Address 1": "Co Kildare",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -928,10 +1039,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "The Grange Woodbine ClubRahenyCo Dublin",
+          Region: "Leinster",
           "Address 4": "The Grange Woodbine Club",
           "Address 3": "",
           "Address 2": "Raheny",
           "Address 1": "Co Dublin",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -952,10 +1065,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "St Peter's GAA HallDunboyneCo Meath",
+          Region: "Leinster",
           "Address 4": "St Peter's GAA Hall",
           "Address 3": "",
           "Address 2": "Dunboyne",
           "Address 1": "Co Meath",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -976,10 +1091,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Saplings National SchoolKillCo Kildare",
+          Region: "Leinster",
           "Address 4": "Saplings National School",
           "Address 3": "",
           "Address 2": "Kill",
           "Address 1": "Co Kildare",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1001,10 +1118,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Autism Resource CentreMillars LaneDundonaldCo DownBT 16 2DA",
+          Region: "Ulster",
           "Address 4": "Autism Resource Centre",
           "Address 3": "Millars Lane",
           "Address 2": "Dundonald",
           "Address 1": "Co Down",
+          "": "",
           Postcode: "BT 16 2DA",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1027,10 +1146,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Corballis Theraputic Riding CentreDonabateCo Dublin",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "Corballis Theraputic Riding Centre",
           "Address 2": "Donabate",
           "Address 1": "Co Dublin",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.facebook.com/pg/Snowflakesautismsupport/events/",
@@ -1053,10 +1174,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "St Michael's House Leisure Centre & Swimming PoolBelcamp LaneBelcampDublin 17",
+          Region: "Leinster",
           "Address 4": "St Michael's House Leisure Centre & Swimming Pool",
           "Address 3": "Belcamp Lane",
           "Address 2": "Belcamp",
           "Address 1": "Dublin 17",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.facebook.com/pg/Snowflakesautismsupport/events/",
@@ -1080,10 +1203,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "North ParkNorth RoadKildonanDublin 11Awesome Walls Dublin",
+          Region: "Leinster",
           "Address 4": "North Park",
           "Address 3": "North Road",
           "Address 2": "Kildonan",
           "Address 1": "Dublin 11",
+          "": "",
           Postcode: "Awesome Walls Dublin",
           "Website/Facebook":
             "https://www.facebook.com/pg/Snowflakesautismsupport/events/",
@@ -1105,10 +1230,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Holywell Community Centre",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "Holywell Community Centre",
           "Website/Facebook":
             "https://www.facebook.com/pg/Snowflakesautismsupport/events/",
@@ -1131,10 +1258,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "?",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "?",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1157,10 +1286,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1182,10 +1313,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+          Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
           "Address 2": "Tallaght",
           "Address 1": "Dublin 24",
+          "": "",
           Postcode: "D24 A3EX",
           "Website/Facebook":
             "https://www.eventbrite.ie/o/county-library-tallaght-dublin-24-4238480120",
@@ -1209,10 +1342,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+          Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
           "Address 2": "Tallaght",
           "Address 1": "Dublin 24",
+          "": "",
           Postcode: "D24 A3EX",
           "Website/Facebook":
             "https://www.eventbrite.ie/o/county-library-tallaght-dublin-24-4238480121",
@@ -1235,10 +1370,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Ulster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1261,10 +1398,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1287,10 +1426,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1313,10 +1454,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1339,10 +1482,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1365,10 +1510,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1391,10 +1538,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1417,10 +1566,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1443,10 +1594,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.odeoncinemas.ie/accessibility/autism-friendly-cinema-screenings/",
@@ -1468,10 +1621,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Splashworld",
+          Region: "Munster",
           "Address 4": "Splashworld",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1493,10 +1648,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Runamuck",
+          Region: "Munster",
           "Address 4": "Runamuck",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1517,10 +1674,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Megabounce",
+          Region: "Munster",
           "Address 4": "Megabounce",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1541,10 +1700,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Kilotteran Equitation Centre",
+          Region: "Munster",
           "Address 4": "Kilotteran Equitation Centre",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1565,10 +1726,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1589,10 +1752,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1613,10 +1778,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1637,10 +1804,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "http://www.wassa.ie/activities/",
           "Tel:": "",
@@ -1661,10 +1830,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1685,10 +1856,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1709,10 +1882,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Nationwide",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1734,10 +1909,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Goff Street, Roscommon, F42W928",
+          Region: "Connacht",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Goff Street,",
           "Address 1": "Roscommon,",
+          "": "",
           Postcode: "F42W928",
           "Website/Facebook": "https://www.facebook.com/sensorymeireland/",
           "Tel:": "",
@@ -1758,10 +1935,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Shannon, Clare, V14EE06",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Shannon,",
           "Address 1": "Clare,",
+          "": "",
           Postcode: "V14EE06",
           "Website/Facebook":
             "https://www.shannonairport.ie/passengers/at-the-airport/flying-out/passenger-assistance/autism-special-needs/",
@@ -1783,10 +1962,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Dublin Airport, Dublin, K67 V8P7",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Dublin Airport,",
           "Address 1": "Dublin,",
+          "": "",
           Postcode: "K67 V8P7",
           "Website/Facebook":
             "https://www.dublinairport.com/at-the-airport/help-and-support/travelling-with-autism",
@@ -1808,10 +1989,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Belfast",
+          Region: "Ulster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Belfast",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1834,10 +2017,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Tayto Park, Kilbrew, Ashbourne, Co Meath, A84 EA02",
+          Region: "Leinster",
           "Address 4": "Tayto Park,",
           "Address 3": "Kilbrew,",
           "Address 2": "Ashbourne,",
           "Address 1": "Co Meath,",
+          "": "",
           Postcode: "A84 EA02",
           "Website/Facebook":
             "http://www.taytopark.ie/visitor-information/disability-policy",
@@ -1860,10 +2045,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.abettertomorrow-lidl.ie/autism-aware-store/",
@@ -1887,10 +2074,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Lidl stores nationwide",
+          Region: "Nationwide",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Lidl stores nationwide",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.abettertomorrow-lidl.ie/autism-aware-store/",
@@ -1912,10 +2101,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1938,10 +2129,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Nangor Road Business ParkNangor RoadDublin 12DublinD12 TNY6",
+          Region: "Leinster",
           "Address 4": "Nangor Road Business Park",
           "Address 3": "Nangor Road",
           "Address 2": "Dublin 12",
           "Address 1": "Dublin",
+          "": "",
           Postcode: "D12 TNY6",
           "Website/Facebook": "https://inflatazone.ie/jump-zone-autism/",
           "Tel:": "",
@@ -1962,10 +2155,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -1988,10 +2183,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "The CivicBelgard Square EastTallaghtDublin 24D24 NWN7",
+          Region: "Leinster",
           "Address 4": "The Civic",
           "Address 3": "Belgard Square East",
           "Address 2": "Tallaght",
           "Address 1": "Dublin 24",
+          "": "",
           Postcode: "D24 NWN7",
           "Website/Facebook":
             "http://fyhp.ie/riding-lessons/equine-assisted-learning/",
@@ -2013,10 +2210,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "IMC Tallaght",
+          Region: "Leinster",
           "Address 4": "IMC Tallaght",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2039,10 +2238,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+          Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
           "Address 2": "Tallaght",
           "Address 1": "Dublin 24",
+          "": "",
           Postcode: "D24 A3EX",
           "Website/Facebook":
             "https://www.eventbrite.ie/o/county-library-tallaght-dublin-24-4238480119",
@@ -2066,10 +2267,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+          Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
           "Address 2": "Tallaght",
           "Address 1": "Dublin 24",
+          "": "",
           Postcode: "D24 A3EX",
           "Website/Facebook":
             "https://www.eventbrite.ie/o/county-library-tallaght-dublin-24-4238480122",
@@ -2093,10 +2296,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Dun Laoghaire, Dublin",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Dun Laoghaire,",
           "Address 1": "Dublin",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2117,10 +2322,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Longford",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Longford",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2142,10 +2349,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2166,10 +2375,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2191,10 +2402,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://www.echolive.ie/corknews/Autism-friendly-health-services-should-be-adopted-nationwide-8cee1b93-f565-45dc-ba04-00d63a514612-ds",
@@ -2216,10 +2429,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Nationwide",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2241,10 +2456,12 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Nationwide",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2265,10 +2482,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2289,10 +2508,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Dun Laoghaire, Dublin",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Dun Laoghaire,",
           "Address 1": "Dublin",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2313,10 +2534,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Dun Laoghaire, Dublin",
+          Region: "Leinster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Dun Laoghaire,",
           "Address 1": "Dublin",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2340,10 +2563,12 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Baldoyle Family Resource Services, Grange Road, Dublin 13, Dublin, D13 TE80",
+          Region: "Leinster",
           "Address 4": "Baldoyle Family Resource Services,",
           "Address 3": "Grange Road,",
           "Address 2": "Dublin 13,",
           "Address 1": "Dublin,",
+          "": "",
           Postcode: "D13 TE80",
           "Website/Facebook":
             "https://www.facebook.com/baldoylefamilyresourcecentre/",
@@ -2365,10 +2590,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2390,10 +2617,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Killinarden Community Centre",
+          Region: "Leinster",
           "Address 4": "Killinarden Community Centre",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2414,10 +2643,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Newry",
+          Region: "Ulster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Newry",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2438,10 +2669,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Ulster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook":
             "https://titanicbelfast.com/Site/Accessibility.aspx",
@@ -2463,10 +2696,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2487,10 +2722,12 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "",
+          Region: "Munster",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "",
+          "": "",
           Postcode: "",
           "Website/Facebook": "",
           "Tel:": "",
@@ -2515,6 +2752,11 @@ export default {
     if (categories.length) {
       this.categories = new Set([].concat(...categories).sort());
     }
+
+    // let regions = this.items.map(item => [item["Region"]]);
+    // if (regions.length) {
+    //   this.regions = new Set([].concat(...regions).sort());
+    // }
   },
 
   methods: {
@@ -2633,10 +2875,7 @@ export default {
 
 summary {
   cursor: pointer;
-}
-
-details {
-  /* transition: all .2s linear; */
+  padding: 10px;
 }
 
 .results-card__wrap {
