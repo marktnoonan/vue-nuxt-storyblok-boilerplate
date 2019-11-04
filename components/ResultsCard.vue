@@ -4,7 +4,6 @@
       <div class="text-xl font-semibold pb-1 text-center">{{item.Name}}</div>
     </li>
     <li v-if="item.Category || item['Banner']">
-      <div class="label">Category</div>
        <button
           @click="searchFromClick"
           class="clickable-val"
@@ -45,7 +44,7 @@
       >{{item["FULL ADDRESS"]}}</a>
     </li>
     <li v-if="item['Website/Facebook']">
-      <div class="label">Website/Facebook</div>
+      <div class="label">Online</div>
       <a
         :href="item['Website/Facebook']"
         class="text-sm font-thin break-all"

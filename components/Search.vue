@@ -1,5 +1,5 @@
 <template>
-  <div class="search__wrap" id="search-top">
+  <div class="search__wrap">
     <div
       class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-6"
       role="alert"
@@ -17,15 +17,18 @@
           </svg>
         </div>
         <div>
-          <p class="font-bold">About these search results</p>
+          <p class="font-bold pb-2">About these search results</p>
+          <p
+            class="pb-2"
+          >AutismActivities.ie does its best to ensure the accuracy of all listings, but cannot be held responsible for errors. Users are encouraged to contact the service providers directly to confirm details.</p>
           <p>
             We are still working out the best way to organize this information, and what kinds of searches are most useful. Please use the
-            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link> to contact us with your feedback and ideas.
+            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link>to contact us with your feedback and ideas.
           </p>
         </div>
       </div>
     </div>
-    <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold">Search All Activities</h1>
+    <h1 class="text-2xl mx-auto my-6 w-64 text-center font-bold" id="search-top">Search All Activities</h1>
     <div class="search-wrap">
       <label>
         <div class="w-64 mx-auto pb-2 text-center">Keyword:</div>
@@ -111,15 +114,22 @@
               v-show="item.Region == region"
               :key="item.Name + i"
             >
-              <ResultsCard v-if="item.Region == region" :item="item" @searchFromClick='searchFromClick'/>
+              <ResultsCard
+                v-if="item.Region == region"
+                :item="item"
+                @searchFromClick="searchFromClick"
+              />
             </div>
           </details>
         </div>
-        <h2 v-if="(filteredResults.filter(item => item.Region == '').length) || (filteredResults.filter(item => item.Region == 'Nationwide').length)" class="text-2xl mt-16 block">All around the country:</h2>
+        <h2
+          v-if="(filteredResults.filter(item => item.Region == '').length) || (filteredResults.filter(item => item.Region == 'Nationwide').length) || (filteredResults.filter(item => item.Region == 'Travel').length)"
+          class="text-2xl mt-16 block"
+        >What else is out there:</h2>
         <div class="categories__wrap">
           <details
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
-            v-for="region in ['', 'Nationwide']"
+            v-for="region in ['', 'Nationwide', 'Travel']"
             v-show="filteredResults.find(item => item.Region == region)"
             :key="region"
             :style="{
@@ -211,7 +221,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
-          Region: "Connacht",
+          Region: "Travel",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
@@ -240,7 +250,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Clayton Hotel, Clarion Road, Sligo, F91 N8EF",
-          Region: "Connacht",
+          Region: "Travel",
           "Address 4": "Clayton Hotel,",
           "Address 3": "Clarion Road,",
           "Address 2": "Sligo,",
@@ -269,7 +279,7 @@ export default {
           "Special notes": "",
           "FULL ADDRESS":
             "Clonkilty Park Hotel, Park Road, Clonakilty, Co Cork, P85 RD23",
-          Region: "Munster",
+          Region: "Travel",
           "Address 4": "Clonkilty Park Hotel,",
           "Address 3": "Park Road,",
           "Address 2": "Clonakilty,",
@@ -297,7 +307,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Ballynoe House HotelDunowenArdfieldClonakilty",
-          Region: "Munster",
+          Region: "Travel",
           "Address 4": "Ballynoe House Hotel",
           "Address 3": "Dunowen",
           "Address 2": "Ardfield",
@@ -315,10 +325,10 @@ export default {
           Name: "Prism Teen Youth",
           Category: "Activity",
           Organisation: "Prism",
-          "Member only?": "CHK",
+          "Member only?": "Y",
           Banner: "Weekly teen youth group",
           "Event details": "",
-          "Cost €": "TBC",
+          "Cost €": "30 a year membership fee",
           When: "Weekly",
           Age: "13+",
           "Age sorting": "13, 14, 15, 16, 17, 18, 19",
@@ -400,13 +410,13 @@ export default {
           Banner: "Swimming and inflatables",
           "Event details": "Swimming session with large inflatable in pool",
           "Cost €": "",
-          When: "TBC",
+          When: "Details to follow",
           Age: "",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Longford,",
+          "FULL ADDRESS": "Carrick on ShannonLongford,",
           Region: "Leinster",
-          "Address 4": "",
+          "Address 4": "Carrick on Shannon",
           "Address 3": "",
           "Address 2": "",
           "Address 1": "Longford,",
@@ -431,12 +441,12 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "call Michael 087 9877 342",
+          "FULL ADDRESS": "",
           Region: "Leinster",
-          "Address 4": "",
+          "Address 4": "Longford Arms Hotel, Longford",
           "Address 3": "",
           "Address 2": "",
-          "Address 1": "call Michael 087 9877 342",
+          "Address 1": "",
           "": "",
           Postcode: "",
           "Website/Facebook": "",
@@ -702,10 +712,10 @@ export default {
           Banner: "Swimming",
           "Event details":
             "Swimming sessions with reduced numbers in pool and fun floats",
-          "Cost €": "",
+          "Cost €": "Details to follow",
           When: "",
           Age:
-            "All, but adults must accompany on a 1 to 1 basis for under fours and 1 to two basis if at least one child is over four",
+            "All, but adults must accompany on a 1 to 1 basis for under fours and 1 to 2 basis if at least one child is over four",
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
@@ -731,8 +741,8 @@ export default {
           "Member only?": "N",
           Banner: "Trampolining",
           "Event details": "Trampoline",
-          "Cost €": "",
-          When: "",
+          "Cost €": "Details to follow",
+          When: "details to follow",
           Age: "",
           "Age sorting": "",
           "Special notes": "",
@@ -1079,7 +1089,8 @@ export default {
           "Follow up": ""
         },
         {
-          Name: "Kidzcraft",
+          Name:
+            "Selected Saturdays, early intervention from 10am to 11.30am, 7 years plus from 12pm to 1.30pm and 10 years plus from 2pm to 3.30pm",
           Category: "Activity",
           Organisation: "Kidzcraft",
           "Member only?": "N",
@@ -1087,7 +1098,7 @@ export default {
           "Event details": "Sensory play, art, social skills",
           "Cost €": "TBC",
           When: "Three sessions on Saturdays xx x",
-          Age: "TBC",
+          Age: "4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14",
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Saplings National SchoolKillCo Kildare",
@@ -1109,8 +1120,9 @@ export default {
           Category: "Activity",
           Organisation: "Helping Hands",
           "Member only?": "N",
-          Banner: "",
-          "Event details": "",
+          Banner: "Autism resource centre",
+          "Event details":
+            "Range of supports including social groups, parent and toddler groups, support sessions and birthday party rentals",
           "Cost €": "",
           When: "",
           Age: "",
@@ -1125,7 +1137,7 @@ export default {
           "Address 1": "Co Down",
           "": "",
           Postcode: "BT 16 2DA",
-          "Website/Facebook": "",
+          "Website/Facebook": "https://www.helpinghandsautism.com/",
           "Tel:": "",
           "Contact name": "",
           "Contact details": "",
@@ -1935,7 +1947,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Shannon, Clare, V14EE06",
-          Region: "Munster",
+          Region: "Travel",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Shannon,",
@@ -1962,7 +1974,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS": "Dublin Airport, Dublin, K67 V8P7",
-          Region: "Leinster",
+          Region: "Travel",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "Dublin Airport,",
@@ -1973,32 +1985,6 @@ export default {
             "https://www.dublinairport.com/at-the-airport/help-and-support/travelling-with-autism",
           "Tel:": "",
           "Contact name": "Siobhan",
-          "Contact details": "",
-          "Follow up": ""
-        },
-        {
-          Name: "w5",
-          Category: "Autism Friendly",
-          Organisation: "",
-          "Member only?": "N",
-          Banner: "",
-          "Event details": "",
-          "Cost €": "",
-          When: "",
-          Age: "",
-          "Age sorting": "",
-          "Special notes": "",
-          "FULL ADDRESS": "Belfast",
-          Region: "Ulster",
-          "Address 4": "",
-          "Address 3": "",
-          "Address 2": "",
-          "Address 1": "Belfast",
-          "": "",
-          Postcode: "",
-          "Website/Facebook": "",
-          "Tel:": "",
-          "Contact name": "Rec by Aisling Fitzmaurice, LinkedIn",
           "Contact details": "",
           "Follow up": ""
         },
@@ -2499,13 +2485,14 @@ export default {
           Name: "Prism Helpline",
           Category: "Support",
           Organisation: "Prism",
-          "Member only?": "CHK",
+          "Member only?": "N",
           Banner: "Helpline",
           "Event details": "Call +353 85 8292839",
           "Cost €": "Free",
           When: "1000 - 1300 Monday to Friday",
           Age: "All",
-          "Age sorting": "",
+          "Age sorting":
+            "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Dun Laoghaire, Dublin",
           Region: "Leinster",
@@ -2525,13 +2512,14 @@ export default {
           Name: "Prism Meetings",
           Category: "Support",
           Organisation: "Prism",
-          "Member only?": "Y",
+          "Member only?": "Y, membership is free for support groups",
           Banner: "Parent Support Meetings",
           "Event details": "Children can also attend meetings",
           "Cost €": "Free",
           When: "Monthly",
           Age: "All",
-          "Age sorting": "",
+          "Age sorting":
+            "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "Dun Laoghaire, Dublin",
           Region: "Leinster",
@@ -2582,22 +2570,23 @@ export default {
           Category: "Support",
           Organisation: "Friends of Autism/ADHD",
           "Member only?": "",
-          Banner: "",
-          "Event details": "",
+          Banner: "Support group",
+          "Event details": "Support group for families with ADHD or Autism",
           "Cost €": "",
           When: "",
           Age: "",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "",
+          "FULL ADDRESS": "Skerries, Dublin",
           Region: "",
           "Address 4": "",
           "Address 3": "",
-          "Address 2": "",
+          "Address 2": "Skerries, Dublin",
           "Address 1": "",
           "": "",
           Postcode: "",
-          "Website/Facebook": "",
+          "Website/Facebook":
+            "https://www.facebook.com/friendsofautismadhdltd/?__tn__=%2Cd%2CP-R&eid=ARAe008Qd9bYNAaINcSP9xmYRryHHQOhUyP3R0AL9fYi7T-SoF9_t_5yqv8Qux8gWOMaW68gk8_9XxhP",
           "Tel:": "",
           "Contact name": "reached out on facebook",
           "Contact details": "",
@@ -2632,13 +2621,14 @@ export default {
         },
         {
           Name: "Sticky Fingers",
-          Category: "",
-          Organisation: "",
+          Category: "Event",
+          Organisation: "Sticky Fingers",
           "Member only?": "N",
-          Banner: "",
-          "Event details": "",
-          "Cost €": "",
-          When: "",
+          Banner: "Autism sessions at Imaginarium Arts Centre",
+          "Event details":
+            "Multi sensory workshop, information booklets available to prepare children in advance",
+          "Cost €": "5 pounds for whole famiy",
+          When: "6.30pm monthly, dates announced on Facebook page",
           Age: "",
           "Age sorting": "",
           "Special notes": "",
@@ -2650,7 +2640,7 @@ export default {
           "Address 1": "Newry",
           "": "",
           Postcode: "",
-          "Website/Facebook": "",
+          "Website/Facebook": "https://www.facebook.com/earlyyearsarts/",
           "Tel:": "",
           "Contact name": "Rec by Aisling Fitzmaurice, LinkedIn",
           "Contact details": "",
@@ -2730,6 +2720,90 @@ export default {
           "": "",
           Postcode: "",
           "Website/Facebook": "",
+          "Tel:": "",
+          "Contact name": "",
+          "Contact details": "",
+          "Follow up": ""
+        },
+        {
+          Name: "Galway Autism Partnership",
+          Category: "Group",
+          Organisation: "Galway Autism Partnership",
+          "Member only?": "",
+          Banner: "Support group",
+          "Event details": "Support, activities and family days",
+          "Cost €": "",
+          When: "",
+          Age: "",
+          "Age sorting":
+            "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
+          "Special notes": "",
+          "FULL ADDRESS": "",
+          Region: "Connacht",
+          "Address 4": "",
+          "Address 3": "",
+          "Address 2": "",
+          "Address 1": "",
+          "": "",
+          Postcode: "",
+          "Website/Facebook": "https://www.galwayautismpartnership.com/",
+          "Tel:": "",
+          "Contact name": "",
+          "Contact details": "",
+          "Follow up": ""
+        },
+        {
+          Name: "Carrick Cineplex",
+          Category: "Event",
+          Organisation: "Carrick Cineplex",
+          "Member only?": "N",
+          Banner: "Autism-friendly cinema screenings",
+          "Event details":
+            "Relaxed screenings with lights left on and reduced volumes",
+          "Cost €": 4,
+          When: "Sessions one Sunday a month",
+          Age: "",
+          "Age sorting":
+            "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
+          "Special notes": "",
+          "FULL ADDRESS":
+            "",
+          Region: "Connacht",
+          "Address 4": "",
+          "Address 3": "",
+          "Address 2": "",
+          "Address 1": "",
+          "": "",
+          Postcode: "",
+          "Website/Facebook": "https://www.carrickcineplex.ie/latest-news/monthly-sensory-autism-special-needs-screening-february-25th/",
+          "Tel:": "",
+          "Contact name": "",
+          "Contact details": "",
+          "Follow up": ""
+        },
+        {
+          Name: "Sligo shopping",
+          Category: "Autism-friendly",
+          Organisation: "Sligo Retail Park",
+          "Member only?": "N",
+          Banner: "Autism-friendly shopping",
+          "Event details":
+            "Peaked caps for people with autism and sensory issues to block out sensory overload and help staff to identiy people who may need assitance. Advice to stores in shopping centre on quiet hours and other accomodations for people with autism",
+          "Cost €": "Free",
+          When: "",
+          Age: "",
+          "Age sorting":
+            "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
+          "Special notes": "",
+          "FULL ADDRESS": "",
+          Region: "Connacht",
+          "Address 4": "",
+          "Address 3": "",
+          "Address 2": "",
+          "Address 1": "",
+          "": "",
+          Postcode: "",
+          "Website/Facebook": "https://www.sligoretailpark.com/",
           "Tel:": "",
           "Contact name": "",
           "Contact details": "",
