@@ -23,7 +23,7 @@
           >AutismActivities.ie does its best to ensure the accuracy of all listings, but cannot be held responsible for errors. Users are encouraged to contact the service providers directly to confirm details.</p>
           <p>
             We are still working out the best way to organize this information, and what kinds of searches are most useful. Please use the
-            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link> to contact us with your feedback and ideas.
+            <nuxt-link to="/feedback" class="underline">feedback form</nuxt-link>to contact us with your feedback and ideas.
           </p>
         </div>
       </div>
@@ -148,7 +148,11 @@
               v-show="item.Region == region"
               :key="item.Name + i"
             >
-              <ResultsCard v-if="item.Region == region" :item="item" />
+              <ResultsCard
+                v-if="item.Region == region"
+                :item="item"
+                @searchFromClick="searchFromClick"
+              />
             </div>
           </details>
         </div>
@@ -366,7 +370,8 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "The Gap, Riverstown, Tramore, Co Waterford, X91 Y436",
+          "FULL ADDRESS":
+            "The Gap, Riverstown, Tramore, Co Waterford, X91 Y436",
           Region: "Munster",
           "Address 4": "The Gap,",
           "Address 3": "Riverstown,",
@@ -1169,7 +1174,8 @@ export default {
           Age: "4 plus",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Corballis Theraputic Riding Centre, Donabate, Dublin",
+          "FULL ADDRESS":
+            "Corballis Theraputic Riding Centre, Donabate, Dublin",
           Region: "Leinster",
           "Address 4": "",
           "Address 3": "Corballis Theraputic Riding Centre",
