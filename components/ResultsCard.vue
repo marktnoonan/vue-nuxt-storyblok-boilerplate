@@ -41,6 +41,7 @@
       <a
         class="font-thin"
         :href="'https://www.google.com/maps/place/' + item['FULL ADDRESS'] + ' Ireland'"
+        target="_blank"
       >{{item["FULL ADDRESS"]}}</a>
     </li>
     <li v-if="item['Website/Facebook']">
