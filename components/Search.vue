@@ -258,7 +258,7 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "Clayton Hotel, Clarion Road, Co SligoF91 N8EF",
+          "FULL ADDRESS": "Clayton Hotel, Clarion Road, Co Sligo, F91 N8EF",
           Region: "Travel",
           "Address 4": "Clayton Hotel,",
           "Address 3": "Clarion Road,",
@@ -287,7 +287,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS":
-            "Clonkilty Park Hotel, Park Road, Clonakilty, Co CorkP85 RD23",
+            "Clonkilty Park Hotel, Park Road, Clonakilty, Co Cork, P85 RD23",
           Region: "Travel",
           "Address 4": "Clonkilty Park Hotel,",
           "Address 3": "Park Road,",
@@ -315,7 +315,7 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "Ballynoe House HotelDunowenArdfieldClonakilty",
+          "FULL ADDRESS": "Ballynoe House Hotel, Dunowen, Ardfield, Clonakilty",
           Region: "Travel",
           "Address 4": "Ballynoe House Hotel",
           "Address 3": "Dunowen",
@@ -370,7 +370,8 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "The Gap, Riverstown, Tramore, Co WaterfordX91 Y436",
+          "FULL ADDRESS":
+            "The Gap, Riverstown, Tramore, Co Waterford, X91 Y436",
           Region: "Munster",
           "Address 4": "The Gap,",
           "Address 3": "Riverstown,",
@@ -397,7 +398,7 @@ export default {
           "Age sorting": "2, 3, 4, 5, 6, 7, 8",
           "Special notes": "",
           "FULL ADDRESS":
-            "11A Altona Road, Blaris Industrial Estate, Lisburn, Co AntrimBT27 5QB",
+            "11A Altona Road, Blaris Industrial Estate, Lisburn, Co Antrim, BT27 5QB",
           Region: "Ulster",
           "Address 4": "11A Altona Road,",
           "Address 3": "Blaris Industrial Estate,",
@@ -423,7 +424,7 @@ export default {
           Age: "",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Carrick on ShannonCo Longford",
+          "FULL ADDRESS": "Carrick on Shannon, Co Longford",
           Region: "Leinster",
           "Address 4": "Carrick on Shannon",
           "Address 3": "",
@@ -477,7 +478,7 @@ export default {
           "Age sorting": "4, 5, 6, 7, 8",
           "Special notes": "",
           "FULL ADDRESS":
-            "Baldoyle Family Resource Services, Grange Road, Dublin 13, DublinD13 TE80",
+            "Baldoyle Family Resource Services, Grange Road, Dublin 13, Dublin, D13 TE80",
           Region: "Leinster",
           "Address 4": "Baldoyle Family Resource Services,",
           "Address 3": "Grange Road,",
@@ -505,7 +506,7 @@ export default {
           "Age sorting": "5, 6, 7, 8, 9, 10, 11, 12, 13, 14",
           "Special notes": "",
           "FULL ADDRESS":
-            "Innovate Wexford Park, Clonard Road, WexfordY35 RT91",
+            "Innovate Wexford Park, Clonard Road, Wexford, Y35 RT91",
           Region: "Leinster",
           "Address 4": "",
           "Address 3": "Innovate Wexford Park,",
@@ -703,7 +704,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS":
-            "JumpBox, 4 Waringsford Road, Banbridge, Co DownBY32 4EH",
+            "JumpBox, 4 Waringsford Road, Banbridge, Co Down, BY32 4EH",
           Region: "Ulster",
           "Address 4": "JumpBox,",
           "Address 3": "4 Waringsford Road,",
@@ -733,7 +734,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS":
-            "Newry Leisure Centre, Cecil Street, Newry, Co DownBT35 6AU",
+            "Newry Leisure Centre, Cecil Street, Newry, Co Down, BT35 6AU",
           Region: "Ulster",
           "Address 4": "Newry Leisure Centre,",
           "Address 3": "Cecil Street,",
@@ -761,7 +762,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Newry Leisure Centre, Cecil Street, Newry, Co DownBT35 6AU",
+            "Newry Leisure Centre, Cecil Street, Newry, Co Down, BT35 6AU",
           Region: "Ulster",
           "Address 4": "Newry Leisure Centre,",
           "Address 3": "Cecil Street,",
@@ -844,7 +845,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS":
-            "Unit F2, Kildare Business Park, Melitta Rd, Whitesland East, Co Kildare, R51 R281, Ireland",
+            "Unit F2, Kildare Business Park, Melitta Rd, Whitesland East, Co Kildare, R51 R281",
           Region: "Leinster",
           "Address 4":
             "Unit F2, Kildare Business Park, Melitta Rd, Whitesland East, Co Kildare, R51 R281, Ireland",
@@ -873,7 +874,7 @@ export default {
           "Age sorting": "",
           "Special notes": "Bookable for 30 min sessions by phoning 061 557726",
           "FULL ADDRESS":
-            "Watch House Cross Community Library, Watch House Cross Shopping CentreKileely RoadCo LimerickV94 NH51",
+            "Watch House Cross Community Library, Watch House Cross Shopping Centre, Kileely Road, Co Limerick, V94 NH51",
           Region: "Munster",
           "Address 4": "Watch House Cross Community Library,",
           "Address 3": "Watch House Cross Shopping Centre",
@@ -929,7 +930,7 @@ export default {
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 12",
           "Special notes": "",
           "FULL ADDRESS":
-            "Nangor Road Business ParkNangor Road, Dublin 12DublinD12 TNY6",
+            "Nangor Road Business ParkNangor Road, Dublin 12, D12 TNY6",
           Region: "Leinster",
           "Address 4": "Nangor Road Business Park",
           "Address 3": "Nangor Road,",
@@ -983,7 +984,7 @@ export default {
           Age: "4 to 12",
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 12",
           "Special notes": "",
-          "FULL ADDRESS": "Celbridge Community Centre, CelbridgeCo Kildare",
+          "FULL ADDRESS": "Celbridge Community Centre, Celbridge, Co Kildare",
           Region: "Leinster",
           "Address 4": "",
           "Address 3": "Celbridge Community Centre,",
@@ -1010,7 +1011,7 @@ export default {
           Age: "5 to 12",
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 13",
           "Special notes": "",
-          "FULL ADDRESS": "St Peter's GAA HallDunboyneCo Meath",
+          "FULL ADDRESS": "St Peter's GAA Hall, Dunboyne, Co Meath",
           Region: "Leinster",
           "Address 4": "St Peter's GAA Hall",
           "Address 3": "",
@@ -1064,7 +1065,7 @@ export default {
           Age: "7 to 12",
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 15",
           "Special notes": "",
-          "FULL ADDRESS": "The Grange Woodbine ClubRahenyCo Dublin",
+          "FULL ADDRESS": "The Grange Woodbine Club, Raheny, Co Dublin",
           Region: "Leinster",
           "Address 4": "The Grange Woodbine Club",
           "Address 3": "",
@@ -1090,7 +1091,7 @@ export default {
           Age: "8 to 12",
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 16",
           "Special notes": "",
-          "FULL ADDRESS": "St Peter's GAA HallDunboyneCo Meath",
+          "FULL ADDRESS": "St Peter's GAA Hall, Dunboyne, Co Meath",
           Region: "Leinster",
           "Address 4": "St Peter's GAA Hall",
           "Address 3": "",
@@ -1117,7 +1118,7 @@ export default {
           Age: "4 to 14",
           "Age sorting": "4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14",
           "Special notes": "",
-          "FULL ADDRESS": "Saplings National SchoolKillCo Kildare",
+          "FULL ADDRESS": "Saplings National School, Kill, Co Kildare",
           Region: "Leinster",
           "Address 4": "Saplings National School",
           "Address 3": "",
@@ -1145,7 +1146,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Autism Resource CentreMillars LaneDundonaldCo DownBT 16 2DA",
+            "Autism Resource Centre, Millars Lane, Dundonald, Co Down, BT 16 2DA",
           Region: "Ulster",
           "Address 4": "Autism Resource Centre",
           "Address 3": "Millars Lane",
@@ -1173,7 +1174,8 @@ export default {
           Age: "4 plus",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Corballis Theraputic Riding CentreDonabateDublin",
+          "FULL ADDRESS":
+            "Corballis Theraputic Riding Centre, Donabate, Dublin",
           Region: "Leinster",
           "Address 4": "",
           "Address 3": "Corballis Theraputic Riding Centre",
@@ -1201,7 +1203,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "St Michael's House Leisure Centre & Swimming PoolBelcamp LaneBelcampDublin 17",
+            "St Michael's House Leisure Centre & Swimming Pool, Belcamp Lane, Belcamp, Dublin 17",
           Region: "Leinster",
           "Address 4": "St Michael's House Leisure Centre & Swimming Pool",
           "Address 3": "Belcamp Lane",
@@ -1230,7 +1232,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "North ParkNorth RoadKildonanDublin 11Awesome Walls Dublin",
+            "North Park, North Road, Kildonan, Dublin 11, Awesome Walls Dublin",
           Region: "Leinster",
           "Address 4": "North Park",
           "Address 3": "North Road",
@@ -1340,7 +1342,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+            "County Library Tallaght, Library Square, Tallaght, Dublin 24,D24 A3EX",
           Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
@@ -1369,7 +1371,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+            "County Library Tallaght, Library Square, Tallaght, Dublin 24, D24 A3EX",
           Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
@@ -1677,7 +1679,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Runamuck, Site 7 Riverstown Business Park, Tramore, Co Waterford, X91 C6RV, Ireland",
+            "Runamuck, Site 7 Riverstown Business Park, Tramore, Co Waterford, X91 C6RV",
           Region: "Munster",
           "Address 4":
             "Runamuck, Site 7 Riverstown Business Park, Tramore, Co Waterford, X91 C6RV, Ireland",
@@ -1704,7 +1706,7 @@ export default {
           Age: "",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Mega Bounce, Farranmacedmond, Co Kilkenny, Ireland",
+          "FULL ADDRESS": "Mega Bounce, Farranmacedmond, Co Kilkenny",
           Region: "Munster",
           "Address 4": "Mega Bounce, Farranmacedmond, Co Kilkenny, Ireland",
           "Address 3": "",
@@ -1731,7 +1733,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Kilotteran Equitation Centre, Old Kilmeaden Road, Co Waterford, Ireland",
+            "Kilotteran Equitation Centre, Old Kilmeaden Road, Co Waterford",
           Region: "Munster",
           "Address 4":
             "Kilotteran Equitation Centre, Old Kilmeaden Road, Co Waterford, Ireland",
@@ -1944,7 +1946,7 @@ export default {
           Age: "All",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Goff Street, Co RoscommonF42W928",
+          "FULL ADDRESS": "Goff Street, Co Roscommon, F42W928",
           Region: "Connacht",
           "Address 4": "",
           "Address 3": "",
@@ -1970,7 +1972,7 @@ export default {
           Age: "All",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Shannon, Co ClareV14EE06",
+          "FULL ADDRESS": "Shannon, Co Clare, V14EE06",
           Region: "Travel",
           "Address 4": "",
           "Address 3": "",
@@ -1997,7 +1999,7 @@ export default {
           Age: "All",
           "Age sorting": "",
           "Special notes": "",
-          "FULL ADDRESS": "Dublin Airport, DublinK67 V8P7",
+          "FULL ADDRESS": "Dublin Airport, Dublin, K67 V8P7",
           Region: "Travel",
           "Address 4": "",
           "Address 3": "",
@@ -2026,7 +2028,7 @@ export default {
           "Age sorting":
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
-          "FULL ADDRESS": "Tayto Park, Kilbrew, Ashbourne, Co MeathA84 EA02",
+          "FULL ADDRESS": "Tayto Park, Kilbrew, Ashbourne, Co Meath, A84 EA02",
           Region: "Leinster",
           "Address 4": "Tayto Park,",
           "Address 3": "Kilbrew,",
@@ -2112,7 +2114,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Nangor Road Business ParkNangor RoadDublin 12DublinD12 TNY6",
+            "Nangor Road Business Park, Nangor Road, Dublin 12, D12 TNY6",
           Region: "Leinster",
           "Address 4": "Nangor Road Business Park",
           "Address 3": "Nangor Road",
@@ -2140,7 +2142,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "Fettercairn Youth Horse Project, Fettercairn Road, Fettercairn, Tallaght, Dublin 24Dublin",
+            "Fettercairn Youth Horse Project, Fettercairn Road, Fettercairn, Tallaght, Dublin 24, Dublin",
           Region: "Leinster",
           "Address 4":
             "Fettercairn Youth Horse Project, Fettercairn Road, Fettercairn, Tallaght, Dublin 24",
@@ -2169,7 +2171,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "The CivicBelgard Square EastTallaghtDublin 24D24 NWN7",
+            "The Civic, Belgard Square East, Tallaght, Dublin 24, D24 NWN7",
           Region: "Leinster",
           "Address 4": "The Civic",
           "Address 3": "Belgard Square East",
@@ -2224,7 +2226,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+            "County Library Tallaght, Library Square, Tallaght, Dublin 24, D24 A3EX",
           Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
@@ -2253,7 +2255,7 @@ export default {
           "Age sorting": "",
           "Special notes": "",
           "FULL ADDRESS":
-            "County Library TallaghtLibrary SquareTallaghtDublin 24D24 A3EX",
+            "County Library Tallaght, Library Square, Tallaght, Dublin 24, D24 A3EX",
           Region: "Leinster",
           "Address 4": "County Library Tallaght",
           "Address 3": "Library Square",
@@ -2523,7 +2525,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS":
-            "Baldoyle Family Resource Services, Grange Road, Dublin 13, DublinD13 TE80",
+            "Baldoyle Family Resource Services, Grange Road, Dublin 13, Dublin, D13 TE80",
           Region: "Leinster",
           "Address 4": "Baldoyle Family Resource Services,",
           "Address 3": "Grange Road,",
@@ -2663,7 +2665,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
-          Region: "",
+          Region: "Connacht",
           "Address 4": "",
           "Address 3": "",
           "Address 2": "",
@@ -2691,7 +2693,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
-          Region: "",
+          Region: "Connacht",
           "Address 4":
             "Sligo Road, Cortober, Carrick on Shannon, Co Roscommon, N41 E6P7, Ireland",
           "Address 3": "",
@@ -2721,7 +2723,7 @@ export default {
             "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, Adult",
           "Special notes": "",
           "FULL ADDRESS": "",
-          Region: "",
+          Region: "Connacht",
           "Address 4": "Sligo Retail Park, Carraroe, Co Sligo, Ireland",
           "Address 3": "",
           "Address 2": "",
