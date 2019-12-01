@@ -54,13 +54,16 @@
       <a class="font-thin" :href="'tel:+'+blok.phone">{{blok.phone}}</a>
     </li>
   </ul>
-    <div>{{blok.review}}</div>
+    <div v-html="review"></div>
   </div>
 </template>
 
 <script>
 export default {
   props: ['blok'],
+  mounted(){
+    console.log(this.$storyapi)
+  },
   computed: {
     review() {
       return this.blok.review ? this.$storyapi.richTextResolver.render(this.blok.review) : ''
