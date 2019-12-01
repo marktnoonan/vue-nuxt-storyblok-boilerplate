@@ -54,7 +54,8 @@
       <a class="font-thin" :href="'tel:+'+blok.phone">{{blok.phone}}</a>
     </li>
   </ul>
-    <div v-html="review"></div>
+    <h2 v-if="review">Review</h2>
+    <div v-if="review" class="review" v-html="review"></div>
   </div>
 </template>
 
@@ -71,3 +72,15 @@ export default {
   }
 }
 </script>
+
+<style lang="css" scoped>
+.results-card {
+  font-size: 20px
+}
+.review {
+  font-size: 20px;
+  line-height: 1.4;
+  border: 1px solid rgba(0,0,0,0.5);
+  padding: 30px;
+}
+</style>
