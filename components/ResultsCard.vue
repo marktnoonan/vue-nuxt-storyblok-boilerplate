@@ -24,7 +24,7 @@
       <div class="label">When?</div>
       {{item["When?"]}}
     </li>
-    <li v-if="item['W]]Cost €']">
+    <li v-if="item['Cost €']">
       <div class="label">Cost</div>
       {{item["Cost €"]}}
     </li>
@@ -55,7 +55,6 @@
       <div class="label">Tel</div>
       <a class="font-thin" :href="'tel:+'+item['Tel:']">{{item["Tel:"]}}</a>
     </li>
-    <!-- <li>Contact: {{item["Address 1"]}}</li> -->
   </ul>
 </template>
 
