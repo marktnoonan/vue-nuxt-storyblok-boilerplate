@@ -11,18 +11,18 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/tailwindcss": "^1.1.2",
+    "@nuxtjs/tailwindcss": "^1.2.0",
     "axios": "^0.19.0",
-    "cross-env": "^5.2.0",
-    "leaflet": "^1.5.1",
-    "nuxt": "^2.0.0",
+    "cross-env": "^5.2.1",
+    "leaflet": "^1.6.0",
+    "nuxt": "^2.10.2",
     "nuxt-leaflet": "0.0.19",
     "scroll-to-element": "^2.0.3",
-    "storyblok-nuxt": "1.0.0",
+    "storyblok-nuxt": "^1.0.2",
     "vue-fuse": "^2.1.2"
   },
   "devDependencies": {
-    "@tailwindcss/custom-forms": "^0.2.0",
-    "nodemon": "^1.11.0"
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "nodemon": "^1.19.4"
   }
 }
