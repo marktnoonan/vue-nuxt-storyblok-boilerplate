@@ -12,11 +12,17 @@
     <div class="title text-center">{{ blok.fullAddress }}</div>
     <div class="title text-center">{{ blok.onlineInfo }}</div>
     <div class="title text-center">{{ blok.phone }}</div>
+    <div>{{blok.review}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['blok']
+  props: ['blok'],
+  computed: {
+    review() {
+      return this.blok.review ? this.$storyapi.richTextResolver.render(this.blok.review) : ''
+    }
+  }
 }
 </script>
