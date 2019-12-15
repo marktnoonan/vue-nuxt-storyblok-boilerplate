@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <header>
     <nav class="flex items-center justify-between flex-wrap p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <nuxt-link to="/"><span class="font-semibold no-active text-xl tracking-tight p-4 hover:bg-blue-700 border">Autism Activities</span></nuxt-link>
@@ -36,12 +36,12 @@
       <input type="radio" class="form-radio" name="accountType" value="general-comment">
       <textarea name="message"></textarea>
     </form>
-  </div>
+  </header>
 </template>
 
 <style scoped>
 nav {
-  background-color: #337ABB
+  background-color: #2a69a4
 }
 body {
   background-image: linear-gradient(to bottom, #ff000026,#ffa50021,#ffff0036,#0080002b,#0000ff24,#4b008230,#c0cdfa3d, white);
@@ -126,4 +126,6 @@ export default {
     })
   }
 }
+
+
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div v-editable="blok">
+  <main v-editable="blok" id="maincontent">
     <component :key="blok._uid" v-for="blok in blok.body" :blok="blok" :is="blok.component | dashify"></component>
-  </div>
+  </main>
 </template>
 
 <script>
