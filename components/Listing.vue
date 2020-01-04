@@ -4,6 +4,9 @@
     <li>
       <div class="text-xl font-semibold pb-1 text-center">{{blok.name}}</div>
     </li>
+    <li v-if="blok.imagePath">
+      <img :src="blok.imagePath" :alt="blok.name">
+    </li>
     <li v-if="blok.category || blok.banner">
        <span>{{blok.category}}</span>
      

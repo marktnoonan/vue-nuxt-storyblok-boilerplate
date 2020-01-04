@@ -97,7 +97,7 @@
             <ResultsCard :item="item" />
           </article>
         </div>-->
-        <h2 class="text-2xl">In your area:</h2>
+        <h2 class="text-2xl">By area:</h2>
         <div class="categories__wrap">
           <details
             class="feature p-2 text text-lg text-base leading-tight my-6 border border-solid"
@@ -676,7 +676,8 @@ export default {
     "Tel:": "",
     "Contact name": "",
     "Contact details": "",
-    "Follow up": ""
+    "Follow up": "",
+    "imagePath": 'https://a.storyblok.com/f/65034/640x480/c935d07b9f/img_2730.JPG'
   },
   {
     "Name": "Best o Matz",
