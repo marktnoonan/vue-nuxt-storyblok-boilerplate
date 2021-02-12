@@ -3,6 +3,9 @@
     <li>
       <div class="text-xl font-semibold pb-1 text-center">{{item.Name}}</div>
     </li>
+     <li v-if="item.imagePath">
+      <img :src="item.imagePath" :alt="item.name">
+    </li>
     <li v-if="item.Category || item['Banner']">
        <button
           @click="searchFromClick"
