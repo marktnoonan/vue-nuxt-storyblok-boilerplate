@@ -15,7 +15,7 @@
     "axios": "^0.19.0",
     "cross-env": "^5.2.1",
     "leaflet": "^1.6.0",
-    "nuxt": "^2.10.2",
+    "nuxt": "^2.15.8",
     "nuxt-leaflet": "0.0.19",
     "scroll-to-element": "^2.0.3",
     "storyblok-nuxt": "^1.0.2",
